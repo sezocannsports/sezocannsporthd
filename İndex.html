@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>⚡ SEZOCANN SPORTS ʜᴅ | Canlı Maç İzle ⚽</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Rajdhani:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+<style>
+/* Kök Değişkenler - Standart Tema (Koyu) */
+:root {
+  --bg-main: #060913;
+  --bg-card: #0b1120;
+  --accent: #facc15; 
+  --accent-dark: #ca8a04; 
+  --accent-glow: rgba(250, 204, 21, 0.12);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --live-red: #ef4444;
+  --border-color: rgba(255, 255, 255, 0.06);
+  --input-bg: #0b1120;
+  --ticker-bg: linear-gradient(90deg, #0b1120, #1e293b, #0b1120);
+  --shadow-main: rgba(0, 0, 0, 0.6);
+  --glass-bg: rgba(11, 17, 32, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --logo-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 30%, #facc15 60%, #ffffff 100%);
+  --card-active-bg: linear-gradient(145deg, #0b1120 0%, #1e293b 100%);
+}
+
+/* BEYAZ MOD AYARLARI */
+body.light-mode {
+  --bg-main: #f1f5f9; 
+  --bg-card: #ffffff;
+  --text-main: #0f172a; 
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.06); 
+  --input-bg: #f8fafc;
+  --ticker-bg: #ffffff;
+  --shadow-main: rgba(0, 0, 0, 0.04); 
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --logo-gradient: linear-gradient(135deg, #0f172a 0%, #0f172a 40%, #facc15 70%, #0f172a 100%);
+  --card-active-bg: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* SÜPER LİG TAKIM TEMALARI */
+body.gs-theme-active:not(.light-mode) {
+  --bg-main: #1a0303; --bg-card: #260606; --accent: #facc15; --accent-dark: #991b1b; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #1f0404; --ticker-bg: linear-gradient(90deg, #260606, #3b0707, #260606); --glass-bg: rgba(38, 6, 6, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #b91c1c 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #260606 0%, #3b0707 100%);
+}
+body.fb-theme-active:not(.light-mode) {
+  --bg-main: #030a14; --bg-card: #061529; --accent: #facc15; --accent-dark: #1e40af; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #041021; --ticker-bg: linear-gradient(90deg, #061529, #0a2246, #061529); --glass-bg: rgba(6, 21, 41, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #1d4ed8 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #061529 0%, #0a2246 100%);
+}
+body.bjk-theme-active:not(.light-mode) {
+  --bg-main: #030303; --bg-card: #0d0d0d; --accent: #ffffff; --accent-dark: #262626; --accent-glow: rgba(255, 255, 255, 0.1); --border-color: rgba(255, 255, 255, 0.12); --input-bg: #141414; --ticker-bg: linear-gradient(90deg, #0d0d0d, #1a1a1a, #0d0d0d); --glass-bg: rgba(13, 13, 13, 0.85); --logo-gradient: linear-gradient(135deg, #ffffff 0%, #111111 50%, #ffffff 100%); --card-active-bg: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%);
+  animation: bjkGlow 8s infinite alternate;
+}
+body.ts-theme-active:not(.light-mode) {
+  --bg-main: #080204; --bg-card: #170409; --accent: #22d3ee; --accent-dark: #9f1239; --accent-glow: rgba(34, 211, 238, 0.12); --border-color: rgba(34, 211, 238, 0.12); --input-bg: #120307; --ticker-bg: linear-gradient(90deg, #170409, #2b0712, #170409); --glass-bg: rgba(23, 4, 9, 0.85); --logo-gradient: linear-gradient(135deg, #22d3ee 0%, #be123c 50%, #22d3ee 100%); --card-active-bg: linear-gradient(145deg, #170409 0%, #2b0712 100%);
+}
+
+@keyframes bjkGlow {
+  0% { box-shadow: inset 0 0 30px rgba(255,255,255,0.02); }
+  100% { box-shadow: inset 0 0 50px rgba(255,255,255,0.05); }
+}
+
+body.light-mode .action-btn-top, body.light-mode .mini-action-btn, body.light-mode .chat-btn, body.light-mode .fav-chip { background: #ffffff; border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-main); color: var(--text-main); }
+body.light-mode .chat-btn.active-chat { background: var(--accent) !important; color: #0f172a !important; border-color: var(--accent) !important; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
+body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 110px; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
+
+header { display: flex; justify-content: space-between; align-items: center; padding: 15px; max-width: 850px; margin: 0 auto; width: 100%; gap: 15px; position: relative; z-index: 10; }
+
+.logo { 
+    font-size: clamp(1rem, 3.8vw, 1.35rem); 
+    font-weight: 900; 
+    letter-spacing: -0.3px; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    background: var(--logo-gradient); 
+    background-size: 400% 100%; 
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    animation: professionalShine 6s ease-in-out infinite; 
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); 
+    transition: transform 0.3s ease;
+}
+.logo .hd-tag, .sm-logo-glow .hd-tag, .welcome-title .hd-tag {
+    font-size: 0.62em;
+    vertical-align: super;
+    margin-left: 3px;
+    font-weight: 800;
+}
+
+@keyframes professionalShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+.header-right { display: flex; align-items: center; gap: 8px; }
+.action-btn-top { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95rem; transition: all 0.2s ease; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.action-btn-top:hover { border-color: var(--accent); background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
+.action-btn-top.bell-active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+.main-container { max-width: 850px; margin: 0 auto; padding: 0 15px; width: 100%; position: relative; z-index: 10; contain: content; }
+
+.player-container { 
+    width: 100%; 
+    border-radius: 20px; 
+    box-shadow: 0 20px 40px var(--shadow-main); 
+    margin-bottom: 16px; 
+    background: #000; 
+    position: relative; 
+    overflow: hidden; 
+    border: 1px solid var(--border-color); 
+    z-index: 20; 
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.select-match-placeholder {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 100; text-align: center; padding: 20px;
+}
+body.light-mode .select-match-placeholder {
+    background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
+}
+
+.sm-logo-glow {
+    font-size: clamp(1.1rem, 4vw, 1.45rem); 
+    font-weight: 900; 
+    letter-spacing: -0.3px; 
+    text-transform: uppercase; 
+    margin-bottom: 16px;
+    background: var(--logo-gradient); 
+    background-size: 400% 100%; 
+    color: transparent; 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    animation: professionalShine 6s ease-in-out infinite, placeholderPulse 2.5s ease-in-out infinite alternate;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); 
+}
+.sm-notice-box {
+    background: rgba(255, 255, 255, 0.02); border: 1px solid var(--accent);
+    padding: 14px 24px; border-radius: 16px; max-width: 400px;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.sm-text-main { font-size: 0.9rem; font-weight: 850; text-transform: uppercase; color: var(--text-main); margin-bottom: 5px; letter-spacing: 0.5px; }
+.sm-text-sub { font-size: 0.75rem; font-weight: 600; color: var(--accent); display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+@keyframes placeholderPulse { 0% { transform: scale(0.98); } 100% { transform: scale(1.02); } }
+
+/* VIDEOJS AYARLARI */
+.video-js { width: 100% !important; height: 100% !important; background-color: #000; }
+.video-js .vjs-big-play-button { 
+    background: rgba(8, 12, 20, 0.8) !important; 
+    border: 2px solid var(--accent) !important; 
+    border-radius: 50% !important; 
+    width: 65px !important; 
+    height: 65px !important; 
+    line-height: 61px !important; 
+    margin-left: -32.5px !important; 
+    margin-top: -32.5px !important; 
+    color: var(--accent) !important; 
+    font-size: 1.8rem !important;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px var(--accent-glow) !important; 
+    transition: all 0.3s ease !important;
+}
+.video-js:hover .vjs-big-play-button { transform: scale(1.08); box-shadow: 0 0 30px var(--accent) !important; }
+
+.vjs-beep-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--accent);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.vjs-beep-button:hover { color: #ffffff; transform: scale(1.1); }
+
+.video-js .vjs-control-bar { 
+    background: rgba(8, 12, 20, 0.75) !important; 
+    backdrop-filter: blur(15px) !important; -webkit-backdrop-filter: blur(15px) !important; 
+    border-top: 1px solid rgba(255,255,255,0.05) !important;
+    height: 48px !important;
+}
+.video-js .vjs-button { color: var(--text-main) !important; height: 48px !important; width: 40px !important; }
+.video-js .vjs-button:hover { color: var(--accent) !important; }
+.video-js .vjs-play-progress, .video-js .vjs-volume-level { background-color: var(--accent) !important; }
+
+/* TICKER */
+.ticker-container { background: var(--ticker-bg); overflow: hidden; position: relative; z-index: 10; width: 100%; margin: 0 auto 16px auto; padding: 10px 0; border-radius: 14px; box-shadow: 0 4px 15px var(--shadow-main); border: 1px solid var(--border-color); display: flex; align-items: center; contain: content; }
+.ticker-wrap { display: flex; width: max-content; white-space: nowrap; animation: smoothMarquee 35s linear infinite; padding-left: 100%; }
+.ticker-group { display: flex; align-items: center; flex-shrink: 0; }
+.ticker-item { color: var(--text-main); font-size: clamp(0.75rem, 2.3vw, 0.82rem); font-weight: 700; padding: 0 20px; letter-spacing: 0.3px; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; white-space: nowrap; line-height: 1.2; }
+.ticker-item::after { content: "•"; color: var(--text-muted); font-size: 1rem; padding-left: 20px; opacity: 0.25; }
+
+@keyframes smoothMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+.text-premium { color: var(--accent); font-weight: 900; }
+.text-insta { color: #e1306c; font-weight: 800; }
+.text-tele { color: #0088cc; font-weight: 800; }
+
+/* KISA BİR MOLA PANELİ */
+.player-error { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111827 0%, #070b14 100%); color: var(--text-main); flex-direction: column; align-items: center; justify-content: center; z-index: 999; text-align: center; padding: 20px; }
+.reji-icon { font-size: 2.2rem; color: #facc15; margin-bottom: 10px; animation: alertPulse 1.2s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.4)); }
+@keyframes alertPulse { 0% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
+.reji-title { font-size: clamp(1rem, 4.2vw, 1.15rem); font-weight: 900; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.reji-subtitle { font-size: clamp(0.75rem, 3vw, 0.82rem); color: var(--text-muted); margin-bottom: 15px; max-width: 300px; line-height: 1.4; font-weight: 600; }
+
+.retry-btn { 
+    background: rgba(255, 255, 255, 0.03); 
+    color: var(--text-main); 
+    border: 1px solid var(--accent); 
+    padding: 7px 16px; 
+    border-radius: 10px; 
+    font-size: 0.75rem; 
+    font-weight: 800; 
+    cursor: pointer; 
+    text-transform: uppercase; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px; 
+    transition: all 0.2s ease; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.retry-btn:hover { background: var(--accent); color: #000; transform: translateY(-1px); box-shadow: 0 4px 12px var(--accent-glow); }
+
+/* POPUP MODAL */
+.welcome-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 999999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+.welcome-modal.show { display: flex; opacity: 1; }
+.welcome-content { background: linear-gradient(160deg, #0f172a 0%, #030712 100%); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px 22px; width: 90%; max-width: 360px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); transform: scale(0.95); transition: transform 0.3s ease; }
+body.light-mode .welcome-content { background: #ffffff; }
+.welcome-modal.show .welcome-content { transform: scale(1); }
+.welcome-icon-wrap { width: 64px; height: 64px; background: rgba(0, 136, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; }
+
+.welcome-icon { font-size: 2rem; color: #0088cc; animation: telegramBlink 3s ease-in-out infinite; }
+@keyframes telegramBlink {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0,136,204,0)); }
+  10% { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(0,136,204,0.6)); }
+  15% { transform: scale(0.95); }
+  20% { transform: scale(1.05); }
+  25% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0,136,204,0.2)); }
+}
+
+.welcome-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 4px; color: var(--text-main); text-transform: uppercase; }
+.welcome-subtitle { font-size: 0.73rem; color: #0088cc; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
+.welcome-text { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
+.welcome-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0088cc; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: 100%; text-transform: uppercase; transition: background 0.2s; }
+.welcome-btn:hover { background: #0077b3; }
+.welcome-close { position: absolute; top: 15px; right: 15px; font-size: 1rem; color: var(--text-muted); cursor: pointer; opacity: 0.6; }
+
+/* THEME MODAL */
+.theme-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 4, 8, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10000; align-items: center; justify-content: center; transition: all 0.3s ease; }
+.theme-modal.active { display: flex; }
+.theme-content { 
+    background: linear-gradient(165deg, rgba(15, 23, 42, 0.95) 0%, rgba(6, 11, 25, 0.98) 100%); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 28px; 
+    padding: 25px 22px; 
+    width: 92%; 
+    max-width: 360px; 
+    text-align: center; 
+    position: relative; 
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+body.light-mode .theme-content {
+    background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
+    border-color: rgba(0,0,0,0.08);
+    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
+}
+.theme-modal.active .theme-content { transform: translateY(0); }
+.modal-close { position: absolute; top: 18px; right: 18px; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s, transform 0.2s; }
+.modal-close:hover { color: var(--live-red); transform: rotate(90deg); }
+
+.theme-title { font-size: 0.78rem; font-weight: 800; margin-bottom: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+body.light-mode .theme-title { color: #0f172a; }
+
+.mode-toggle-section { border-bottom: 1px solid var(--border-color); padding-bottom: 18px; margin-bottom: 18px; display: flex; gap: 12px; justify-content: center; }
+.mode-btn { 
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid var(--border-color); 
+    color: var(--text-main); 
+    padding: 10px 14px; 
+    font-size: 0.85rem; 
+    font-weight: 700; 
+    border-radius: 14px; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    gap: 8px; 
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+.mode-btn:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+.mode-btn.active { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); box-shadow: 0 4px 12px rgba(255,255,255,0.15); }
+body.light-mode .mode-btn.active { box-shadow: 0 4px 12px rgba(15,23,42,0.15); }
+
+.theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.t-card { 
+    background: rgba(255, 255, 255, 0.02); 
+    padding: 14px 12px; 
+    border-radius: 16px; 
+    cursor: pointer; 
+    font-weight: 700; 
+    font-size: 0.85rem; 
+    border: 1px solid var(--border-color); 
+    color: var(--text-main); 
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+}
+.t-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%); opacity: 0; transition: opacity 0.2s;
+}
+.t-card:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.04); transform: translateY(-2px); }
+.t-card.active { 
+    border-color: var(--accent); 
+    background: rgba(255, 255, 255, 0.05); 
+    box-shadow: 0 0 15px var(--accent-glow), inset 0 0 8px var(--accent-glow);
+}
+body.light-mode .t-card { background: #f8fafc; }
+body.light-mode .t-card:hover { background: #f1f5f9; }
+body.light-mode .t-card.active { border-color: #facc15; background: rgba(250, 204, 21, 0.05); box-shadow: 0 4px 12px rgba(250,204,21,0.1); }
+
+.t-card i { font-size: 1.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); transition: transform 0.2s; }
+.t-card:hover i { transform: scale(1.1); }
+
+.favorites-bar { display: none; background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 14px; padding: 10px 14px; margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
+.favorites-bar.visible { display: block; }
+.fav-bar-inner { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.fav-bar-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; }
+#favChips { display: flex; gap: 8px; }
+.fav-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); border-radius: 10px; padding: 5px 10px; font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text-main); }
+.fav-remove { color: var(--text-muted); font-size: 0.75rem; margin-left: 4px; }
+.fav-remove:hover { color: var(--live-red); }
+
+.search-row { display: flex; gap: 10px; margin-bottom: 16px; width: 100%; align-items: center; }
+.search-bar { flex: 1; position: relative; }
+.search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1rem; }
+.search-bar input { width: 100%; padding: 12px 14px 12px 42px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; color: var(--text-main); outline: none; font-size: 0.88rem; font-weight: 600; transition: border-color 0.2s; }
+.search-bar input:focus { border-color: var(--accent); }
+
+.chat-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 0 16px; height: 44px; border-radius: 14px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+.chat-pulse { animation: chatBtnPulse 2s infinite; border-color: var(--accent) !important; color: var(--accent) !important; }
+@keyframes chatBtnPulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); transform: scale(1); } 70% { box-shadow: 0 0 0 8px rgba(250, 204, 21, 0); transform: scale(1.03); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); transform: scale(1); } }
+.chat-btn.active-chat { background: var(--accent) !important; color: #000 !important; border-color: var(--accent) !important; animation: none; }
+
+.chat-wrapper { display: none; margin-bottom: 20px; width: 100%; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease; }
+.chat-wrapper.show-chat { display: block; opacity: 1; transform: translateY(0); }
+.chat-container { width: 100%; background: #070b12; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); padding: 4px; }
+.cbox-iframe { width: 100%; height: 350px; background: #070b12; border: none; display: block; border-radius: 12px; }
+
+/* REHBER */
+.match-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
+.match-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; cursor: pointer; position: relative; width: 100%; overflow: hidden; transition: all 0.25s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: cardEntrance 0.4s ease both; }
+@keyframes cardEntrance { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+.match-card:hover { transform: translateY(-2px); border-color: rgba(250, 204, 21, 0.3); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.match-card.active { background: var(--card-active-bg); border-color: var(--accent); box-shadow: 0 4px 12px var(--accent-glow); }
+
+.match-card-active-bg { 
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center; 
+    padding: 12px 10px; 
+    width: 100%; 
+    gap: 8px; 
+    position: relative; 
+} 
+
+.section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; z-index: 5; letter-spacing: 0.3px; }
+body.default-theme-active .section-badge, body.light-mode .section-badge { color: #000; }
+body.border-theme-active .section-badge { color: #fff; background: #111; border: 1px solid #fff; }
+.hidden-card { display: none !important; }
+
+.match-left { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 4px; flex: 1; }
+.live-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; gap: 1px; flex-shrink: 0; width: 45px; }
+.live-badge .live-text { display: flex; align-items: center; gap: 4px; color: var(--live-red); position: relative; padding-left: 12px; font-weight: 900; }
+.live-badge .live-text::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; background-color: var(--live-red); border-radius: 50%; animation: liveDotPulse 1.5s infinite ease-in-out; }
+
+@keyframes liveDotPulse { 0% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } 50% { transform: translateY(-50%) scale(1.2); opacity: 1; } 100% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } }
+.live-badge .match-time-sub { font-size: 0.62rem; color: var(--text-muted); font-weight: 700; padding-left: 12px; }
+
+.match-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow: hidden; flex: 1; }
+.league-name { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: 0.3px; opacity: 0.8; }
+
+.teams { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    font-weight: 700; 
+    font-size: 0.78rem; 
+    letter-spacing: 0.2px; 
+    min-width: 0; 
+    color: var(--text-main); 
+    width: 100%;
+}
+
+.scroll-container { 
+    flex: 1; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    position: relative;
+    display: flex;
+}
+.scroll-text { 
+    display: inline-block; 
+    color: var(--text-main); 
+    will-change: transform;
+}
+
+.marquee-active { 
+    display: inline-block;
+    animation: textMarquee 12s linear infinite; 
+} 
+
+@keyframes textMarquee { 
+    0% { transform: translate3d(0, 0, 0); } 
+    100% { transform: translate3d(-50%, 0, 0); } 
+}
+
+.team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); }
+.match-card.active .team-avatar { color: var(--accent); border-color: var(--accent); background: rgba(255,255,255,0.06); }
+
+.card-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.action-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.82rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; }
+.action-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(255, 255, 255, 0.06); }
+.action-btn.faved { color: var(--accent) !important; background: rgba(250, 204, 21, 0.08); border-color: var(--accent); }
+body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rgba(255,255,255,1); border-color: #fff; }
+
+.play-icon-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem; border: 1px solid var(--border-color); transition: all 0.2s; }
+.match-card:hover .play-icon-btn { color: var(--accent); border-color: var(--accent); }
+.match-card.active .play-icon-btn { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 800; }
+.match-card.active .play-icon-btn i { color: #000 !important; }
+
+/* ALT KISIM TÜM CİHAZLARI KAPSAYACAK ŞEKİLDE MANTIKLI HALE GETİRİLDİ */
+.site-footer {
+    text-align: center;
+    padding: 24px 15px;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+}
+.site-footer .footer-brand {
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 0.2px;
+}
+.site-footer .footer-brand span {
+    color: var(--accent);
+    font-weight: 900;
+}
+.site-footer i {
+    color: var(--live-red);
+    margin: 0 2px;
+    font-size: 0.65rem;
+}
+
+.bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--glass-border); display: flex; justify-content: space-around; padding: 14px 0; z-index: 999; }
+.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: color 0.2s; }
+.nav-item i { font-size: 1.2rem; }
+.nav-item:hover { color: var(--text-main); }
+.nav-item.active { color: var(--accent); }
+
+.custom-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-main); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10000; display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; }
+.custom-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="custom-toast" id="siteToast"><i class="fa-solid fa-circle-check" id="toastIcon" style="color:var(--accent);"></i> <span id="toastMsg">İşlem Başarılı!</span></div>
+
+<div class="welcome-modal" id="welcomeModal">
+  <div class="welcome-content">
+    <i class="fa-solid fa-xmark welcome-close" onclick="closeWelcome()"></i>
+    <div class="welcome-icon-wrap">
+        <div class="welcome-icon"><i class="fa-brands fa-telegram"></i></div>
+    </div>
+    <h2 class="welcome-title">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></h2>
+    <div class="welcome-subtitle">Resmî Duyuru Kanalı</div>
+    <p class="welcome-text">Canlı yayın linkleri, anlık maç bildirimleri ve kesintisiz adres güncellemeleri için topluluğumuza katılın.</p>
+    <a href="https://t.me/sezocannsports" target="_blank" class="welcome-btn" onclick="closeWelcome()">
+      <i class="fa-brands fa-telegram"></i> KANALA KATIL
+    </a>
+  </div>
+</div>
+
+<header>
+  <div class="logo" id="siteLogo" onclick="window.location.reload();">
+    SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span>
+  </div>
+  <div class="header-right">
+      <button class="action-btn-top" id="pushBellBtn" onclick="requestPushNotification()"><i class="fa-solid fa-bell"></i></button>
+      <button class="action-btn-top" onclick="shareSite()"><i class="fa-solid fa-share-nodes"></i></button>
+      <button class="action-btn-top" onclick="document.getElementById('themeModal').classList.add('active')"><i class="fa-solid fa-shirt"></i></button>
+      <button class="action-btn-top" onclick="gitInstagram()" title="Instagram"><i class="fa-brands fa-instagram"></i></button>
+      <button class="action-btn-top" onclick="gitTelegram()" title="Telegram"><i class="fa-brands fa-telegram"></i></button>
+  </div>
+</header>
+
+<div class="ticker-container">
+  <div class="ticker-wrap" id="mainTickerWrap">
+    <div class="ticker-group">
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ VE DONMASIZ YAYIN KEYFİ BAŞLADI!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> ANLIK SÜRPRİZ LİNKLER İÇİN <span class="text-insta">INSTAGRAM'DAN BİZİ TAKİP ET! (@sezaicann1)</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> ANLIK BİLDİRİMLER İÇİN <span class="text-tele">TELEGRAM KANALIMIZA KATIL! (t.me/sezocannsports)</span></span>
+    </div>
+    <div class="ticker-group">
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ VE DONMASIZ YAYIN KEYFİ BAŞLADI!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> ANLIK SÜRPRİZ LİNKLER İÇİN <span class="text-insta">INSTAGRAM'DAN BİZİ TAKİP ET! (@sezaicann1)</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> ANLIK BİRAZDAN BAŞLAYACAK BİLDİRİMLER İÇİN KANALIMIZA KATIL!</span>
+    </div>
+  </div>
+</div>
+
+<div class="theme-modal" id="themeModal" onclick="this.classList.remove('active')">
+    <div class="theme-content" onclick="event.stopPropagation()">
+        <i class="fa-solid fa-xmark modal-close" onclick="document.getElementById('themeModal').classList.remove('active')"></i>
+        <div class="theme-title"><i class="fa-solid fa-circle-half-stroke"></i> Arayüz Teması</div>
+        <div class="mode-toggle-section">
+            <button class="mode-btn" id="darkModeBtn" onclick="toggleLightDarkMode('dark')"><i class="fa-solid fa-moon"></i> Koyu Mod</button>
+            <button class="mode-btn" id="lightModeBtn" onclick="toggleLightDarkMode('light')"><i class="fa-solid fa-sun"></i> Açık Mod</button>
+        </div>
+        <div class="theme-title"><i class="fa-solid fa-palette"></i> Takım Rengini Seç</div>
+        <div class="theme-grid">
+            <div class="t-card" id="theme-default" onclick="setTheme('default', this)"><i class="fa-solid fa-shield" style="color:#facc15"></i>Standart</div>
+            <div class="t-card" id="theme-gs" onclick="setTheme('gs', this)"><i class="fa-solid fa-shield" style="color:#b91c1c;"></i>G.Saray</div>
+            <div class="t-card" id="theme-fb" onclick="setTheme('fb', this)"><i class="fa-solid fa-shield" style="color:#1d4ed8;"></i>F.Bahçe</div>
+            <div class="t-card" id="theme-bjk" onclick="setTheme('bjk', this)"><i class="fa-solid fa-shield" style="color:#ffffff;"></i>Beşiktaş</div>
+            <div class="t-card" id="theme-ts" onclick="setTheme('ts', this)"><i class="fa-solid fa-shield" style="color:#22d3ee;"></i>Trabzon</div>
+        </div>
+    </div>
+</div>
+
+<main class="main-container">
+  <div class="layout-left">
+    <div class="player-container">
+      
+      <div class="select-match-placeholder" id="selectMatchPlaceholder">
+           <div class="sm-logo-glow">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></div>
+           <div class="sm-notice-box">
+                <div class="sm-text-main">📺 YAYIN SEÇİNİZ</div>
+                <div class="sm-text-sub"><i class="fa-solid fa-hand-point-down"></i> Lütfen listeden izlemek istediğiniz maçı başlatın</div>
+           </div>
+      </div>
+
+      <video id="sezocannVideo" class="video-js vjs-theme-sezocann" controls preload="auto" playsinline></video>
+      
+      <div id="playerError" class="player-error">
+          <i class="fa-solid fa-triangle-exclamation reji-icon"></i>
+          <h2 class="reji-title">Kısa Bir Mola!</h2>
+          <p class="reji-subtitle">Sunucularimizi senin için daha kaliteli ve akici hale getiriyoruz. Hemen bitirip dönüyoruz!</p>
+          <button class="retry-btn" id="retryStreamBtn" onclick="retryCurrentStream()"><i class="fa-solid fa-rotate-right" id="retryIcon"></i> Yeniden Dene</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout-right">
+    <div class="favorites-bar" id="favoritesBar">
+      <div class="fav-bar-inner">
+        <span class="fav-bar-title"><i class="fa-solid fa-heart"></i> Favoriler</span>
+        <div id="favChips"></div>
+      </div>
+    </div>
+
+    <div class="search-row">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Kanal veya Maç Ara...">
+      </div>
+      <button class="chat-btn" id="chatToggleBtn" onclick="toggleChat()"><i class="fa-solid fa-comments"></i></button>
+    </div>
+
+    <div class="chat-wrapper" id="chatWrapper">
+        <div class="chat-container">
+          <iframe src="https://my.cbox.ws/SEZOCANNSPORTSHD" 
+                  class="cbox-iframe"
+                  allowtransparency="yes" 
+                  allow="autoplay" 
+                  frameborder="0" 
+                  marginheight="0" 
+                  marginwidth="0" 
+                  scrolling="auto">
+          </iframe>
+        </div>
+    </div>
+
+    <div class="match-list" id="matchList"></div>
+  </div>
+
+  <!-- GÜNCELLENEN METİN BU ALANDADIR -->
+  <footer class="site-footer">
+    <div class="footer-brand">© <span id="currentYear"></span> SEZOCANN SPORTS <span>ʜᴅ</span></div>
+    <div>Tüm hakları saklıdır. Tasarım ve altyapı tüm cihazlarla (Mobil, Tablet, PC) tam uyumludur.</div>
+  </footer>
+</main>
+
+<div class="bottom-nav">
+  <div class="nav-item active" id="nav-onemli" onclick="switchCategory('onemli', this)"><i class="fa-solid fa-star"></i>Günün Önemli Karşılaşmaları</div>
+  <div class="nav-item" id="nav-spor" onclick="switchCategory('spor', this)"><i class="fa-solid fa-trophy"></i>7/24 Kanallar</div>
+  <div class="nav-item" id="nav-favoriler" onclick="switchCategory('favoriler', this)"><i class="fa-solid fa-heart"></i>Favoriler</div>
+</div>
+
+<audio id="beepAudio" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" preload="auto"></audio>
+
+<script type="text/javascript">
+const themes = {
+    default: { dark: '#facc15', dark_d: '#ca8a04', bg: '#060913', card: '#0b1120', glow: 'rgba(250, 204, 21, 0.1)' },
+    gs: { dark: '#facc15', dark_d: '#991b1b', bg: '#1a0303', card: '#260606', glow: 'rgba(250, 204, 21, 0.12)' },
+    fb: { dark: '#facc15', dark_d: '#1e40af', bg: '#030a14', card: '#061529', glow: 'rgba(250, 204, 21, 0.12)' },
+    bjk: { dark: '#ffffff', dark_d: '#262626', bg: '#030303', card: '#0d0d0d', glow: 'rgba(255, 255, 255, 0.1)' },
+    ts: { dark: '#22d3ee', dark_d: '#9f1239', bg: '#080204', card: '#170409', glow: 'rgba(34, 211, 238, 0.12)' }
+};
+
+const SafeStorage = {
+    get(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch(e) { return fallback; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch(e) {} }
+};
+
+function trNormalize(text) {
+    if (!text) return '';
+    return text.toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ö/g, 'o').replace(/ü/g, 'u');
+}
+
+const DOM = {
+    root: document.documentElement,
+    playerError: document.getElementById('playerError'),
+    favoritesBar: document.getElementById('favoritesBar'),
+    favChips: document.getElementById('favChips'),
+    matchList: document.getElementById('matchList'),
+    chatWrapper: document.getElementById('chatWrapper'),
+    chatToggleBtn: document.getElementById('chatToggleBtn'),
+    searchInput: document.getElementById('searchInput'),
+    pushBellBtn: document.getElementById('pushBellBtn'),
+    themeModal: document.getElementById('themeModal'),
+    darkModeBtn: document.getElementById('darkModeBtn'),
+    lightModeBtn: document.getElementById('lightModeBtn'),
+    toast: document.getElementById('siteToast'),
+    toastMsg: document.getElementById('toastMsg'),
+    toastIcon: document.getElementById('toastIcon'),
+    siteLogo: document.getElementById('siteLogo'),
+    placeholder: document.getElementById('selectMatchPlaceholder'),
+    beepAudio: document.getElementById('beepAudio')
+};
+
+const streamsData = {
+    onemli: {
+        items: [
+            { 
+                id: "venezuela_turkiye", 
+                isLive: true, 
+                startTime: "01:00", 
+                league: "MİLLİ MAÇ", 
+                teams: "VENEZUELA - TÜRKİYE", 
+                url: "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv.m3u8", 
+                customBadge: "MİLLİ TAKIM"
+            }
+        ]
+    },
+    spor: {
+        items: [
+            { id: "trt_1_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
+            { id: "trt_spor_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
+            { id: "trt_2_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT 2 HD", url: "https://tv-trt2.medya.trt.com.tr/master.m3u8" },
+            { id: "tabii_spor", isLive: true, startTime: "7/24", league: "TABİİ", teams: "TABİİ SPOR", url: "https://tv-tabiispor.medya.trt.com.tr/master.m3u8" },
+            { id: "tabii_spor_2", isLive: true, startTime: "7/24", league: "TABİİ", teams: "TABİİ SPOR 2", url: "https://tv-tabiispor2.medya.trt.com.tr/master.m3u8" },
+            { id: "tabii_spor_3", isLive: true, startTime: "7/24", league: "TABİİ", teams: "TABİİ SPOR 3", url: "https://tv-tabiispor3.medya.trt.com.tr/master.m3u8" }
+        ]
+    }
+};
+
+let currentCategory = 'onemli'; let vjsPlayer = null; let currentUrl = ''; let toastTimer = null;
+
+function showToast(msg, iconClass = "fa-circle-check") {
+    if(!DOM.toast || !DOM.toastMsg || !DOM.toastIcon) return;
+    if(toastTimer) clearTimeout(toastTimer);
+    DOM.toastIcon.className = `fa-solid ${iconClass}`; DOM.toastMsg.innerText = msg;
+    DOM.toast.classList.add('show'); toastTimer = setTimeout(() => { DOM.toast.classList.remove('show'); }, 2500);
+}
+
+function toggleLightDarkMode(mode) {
+    if(mode === 'light') { document.body.classList.add('light-mode'); if(DOM.lightModeBtn) DOM.lightModeBtn.classList.add('active'); if(DOM.darkModeBtn) DOM.darkModeBtn.classList.remove('active'); SafeStorage.set('sezocann_display_mode', 'light'); } 
+    else { document.body.classList.remove('light-mode'); if(DOM.darkModeBtn) DOM.darkModeBtn.classList.add('active'); if(DOM.lightModeBtn) DOM.lightModeBtn.classList.remove('active'); SafeStorage.set('sezocann_display_mode', 'dark'); }
+    applyTheme(SafeStorage.get('sezocann_theme', 'default'));
+}
+
+function applyTheme(key) {
+    document.body.classList.remove('default-theme-active', 'gs-theme-active', 'fb-theme-active', 'bjk-theme-active', 'ts-theme-active');
+    const isLight = document.body.classList.contains('light-mode');
+    const themeSet = themes[key] || themes.default;
+    if(isLight) { DOM.root.style.setProperty('--accent', '#facc15'); DOM.root.style.setProperty('--accent-dark', '#ca8a04'); DOM.root.style.setProperty('--accent-glow', 'rgba(250, 204, 21, 0.04)'); } 
+    else { document.body.classList.add(`${key}-theme-active`); DOM.root.style.setProperty('--accent', themeSet.dark); DOM.root.style.setProperty('--accent-dark', themeSet.dark_d); DOM.root.style.setProperty('--accent-glow', themeSet.glow); DOM.root.style.setProperty('--bg-main', themeSet.bg); DOM.root.style.setProperty('--bg-card', themeSet.card); }
+    SafeStorage.set('sezocann_theme', key);
+}
+
+function setTheme(key, el) { applyTheme(key); document.querySelectorAll('.t-card').forEach(c => c.classList.remove('active')); if(el) el.classList.add('active'); setTimeout(() => { if(DOM.themeModal) DOM.themeModal.classList.remove('active'); }, 200); }
+function gitInstagram() { window.open("https://www.instagram.com/sezaicann1", '_blank'); }
+function gitTelegram() { window.open("https://t.me/sezocannsports", '_blank'); }
+
+function shareSite() { try { navigator.clipboard.writeText(window.location.href); showToast("Yayin linki başariyla kopyalandi! 🚀"); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜ帶', url: window.location.href }); } }
+function shareMatch(t) { try { navigator.clipboard.writeText(window.location.href); showToast(`${t} kopyalandi! 🚀`); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canli İzle!` }); } }
+
+function retryCurrentStream() { 
+    const retryIcon = document.getElementById('retryIcon');
+    if(retryIcon) { retryIcon.classList.add('fa-spin'); setTimeout(() => { retryIcon.classList.remove('fa-spin'); }, 1000); }
+    if(currentUrl) loadM3u8(currentUrl, true); 
+}
+
+function triggerStreamError() { if(DOM.playerError) DOM.playerError.style.display = 'flex'; }
+
+function loadM3u8(url, autoPlayCheck = false) {
+    currentUrl = url; 
+    if(DOM.playerError) DOM.playerError.style.display = 'none'; 
+    if(autoPlayCheck && DOM.placeholder) { DOM.placeholder.style.display = 'none'; }
+    const cacheBuster = url.includes('?') ? '&' : '?';
+    const finalStreamUrl = url + cacheBuster + "szc_live=" + new Date().getTime();
+
+    if (!vjsPlayer) {
+        vjsPlayer = videojs('sezocannVideo', {
+            autoplay: autoPlayCheck,
+            preload: 'auto',
+            fluid: true,
+            responsive: true,
+            controls: true,
+            playsinline: true,
+            html5: { hls: { overrideNative: true, enableLowInitialPlaylist: true, smoothQualityChange: true, handleManifestRedirects: true, bandwidth: 5000000, lowLatencyMode: true } },
+            liveui: true,
+            liveTracker: { trackingThreshold: 0, liveTolerance: 3 }
+        });
+
+        const videoElement = document.getElementById('sezocannVideo');
+        if(videoElement) { videoElement.setAttribute('importance', 'high'); }
+
+        const controlBar = vjsPlayer.getChild('controlBar');
+        if (controlBar) {
+            const beepButton = controlBar.addChild('button', {
+                className: 'vjs-beep-button vjs-control vjs-button',
+                innerHTML: '<i class="fa-solid fa-volume-high"></i>'
+            });
+            beepButton.el().onclick = function(e) {
+                e.stopPropagation();
+                if(DOM.beepAudio) { DOM.beepAudio.currentTime = 0; DOM.beepAudio.play(); showToast("Sinyal test kanallari aktif! 🔔", "fa-volume-high"); }
+            };
+        }
+        vjsPlayer.on('error', function() { triggerStreamError(); });
+    }
+
+    try {
+        vjsPlayer.src({ src: finalStreamUrl, type: 'application/x-mpegURL' });
+        if(autoPlayCheck) {
+            vjsPlayer.play().then(() => { vjsPlayer.muted(false); }).catch(() => { vjsPlayer.muted(true); vjsPlayer.play(); });
+        }
+    } catch(err) { triggerStreamError(); }
+}
+
+function requestPushNotification() { 
+    if (!("Notification" in window)) { showToast("Tarayiciniz bildirimleri desteklemiyor.", "fa-exclamation-triangle"); return; }
+    Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+            if(DOM.pushBellBtn) DOM.pushBellBtn.classList.add('bell-active');
+            showToast("Anlik maç bildirimleri aktif! 🔔");
+            new Notification("SEZOCANN SPORTS HD", { body: "Anlik maç ve canli yayin bildirim sistemi başariyla aktifleştirildi! ⚽" });
+        } else { showToast("Bildirim izinleri reddedildi.", "fa-bell-slash"); }
+    });
+}
+
+function toggleChat() { 
+  if(!DOM.chatWrapper || !DOM.chatToggleBtn) return; 
+  if (DOM.chatWrapper.classList.contains("show-chat")) { DOM.chatWrapper.classList.remove('show-chat'); DOM.chatToggleBtn.classList.remove('active-chat'); } 
+  else { DOM.chatWrapper.classList.add('show-chat'); DOM.chatToggleBtn.classList.add('active-chat'); } 
+}
+
+function playStreamDirectly(item) { loadM3u8(item.url, true); }
+function getFavorites() { try { return JSON.parse(SafeStorage.get('sezocann_favorites', '[]')) || []; } catch(e) { return []; } }
+function saveFavorites(f) { SafeStorage.set('sezocann_favorites', JSON.stringify(f)); }
+
+function toggleFavorite(item) {
+    let f = getFavorites(); const idx = f.findIndex(x => x.id === item.id);
+    if (idx === -1) { f.push(item); showToast("Favorilere eklendi!", "fa-heart"); } 
+    else { f.splice(idx, 1); showToast("Favorilerden çikarildi!", "fa-heart-crack"); }
+    saveFavorites(f); renderFavoritesBar(); renderCategoryList(currentCategory);
+}
+
+function renderFavoritesBar() {
+    if(!DOM.favChips || !DOM.favoritesBar) return; const f = getFavorites(); DOM.favChips.innerHTML = ''; if (f.length === 0) { DOM.favoritesBar.classList.remove('visible'); return; }
+    DOM.favoritesBar.classList.add('visible');
+    f.forEach(fav => {
+        const chip = document.createElement('span'); chip.className = 'fav-chip';
+        chip.innerHTML = `<i class="fa-solid fa-tv"></i><span>${fav.teams}</span><i class="fa-solid fa-xmark fav-remove"></i>`;
+        chip.querySelector('span').onclick = (e) => { e.stopPropagation(); playStreamDirectly(fav); };
+        chip.querySelector('.fav-remove').onclick = (e) => { e.stopPropagation(); saveFavorites(getFavorites().filter(x => x.id !== fav.id)); renderFavoritesBar(); renderCategoryList(currentCategory); };
+        DOM.favChips.appendChild(chip);
+    });
+}
+
+function renderCategoryList(category) {
+    if(!DOM.matchList) return; DOM.matchList.innerHTML = "";
+    let items = category === 'favoriler' ? getFavorites() : (streamsData[category] ? streamsData[category].items : []);
+    if (!items || items.length === 0) { DOM.matchList.innerHTML = `<div style="text-align:center; padding:30px 15px; color:var(--text-muted); font-size:0.75rem; font-weight:500;"><i class="fa-solid fa-heart-circle-plus" style="font-size:1.5rem; margin-bottom:8px; display:block; opacity:0.3;"></i>Liste Boş.</div>`; return; }
+
+    items.forEach((item) => {
+        const faved = getFavorites().some(x => x.id === item.id); const card = document.createElement('div'); card.className = `match-card`;
+        card.dataset.searchtext = trNormalize(item.teams + " " + item.league);
+        
+        card.innerHTML = (item.customBadge ? `<div class="section-badge">${item.customBadge}</div>` : '') + `
+            <div class="match-card-active-bg">
+                <div class="match-left">
+                  <div class="live-badge"><span class="live-text">Canli</span><span class="match-time-sub">${item.startTime}</span></div>
+                  <div class="match-info">
+                    <div class="league-name">${item.league}</div>
+                    <div class="teams">
+                        <div class="team-avatar"><i class="fa-solid fa-tv"></i></div>
+                        <div class="scroll-container"><span class="scroll-text">${item.teams}</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-actions">
+                    <div class="action-btn share-btn" title="Paylaş"><i class="fa-solid fa-share-nodes"></i></div>
+                    <div class="action-btn fav-btn ${faved ? 'faved' : ''}" title="Favori"><i class="fa-${faved ? 'solid' : 'regular'} fa-heart"></i></div>
+                    <div class="play-icon-btn"><i class="fa-solid fa-play"></i></div>
+                </div>
+            </div>`;
+            
+        card.querySelector('.share-btn').addEventListener('click', (e) => { e.stopPropagation(); shareMatch(item.teams); });
+        card.querySelector('.fav-btn').addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(item); });
+        
+        card.onclick = () => { document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active')); card.classList.add('active'); playStreamDirectly(item); };
+        DOM.matchList.appendChild(card);
+    });
+    checkAndActivateMarquee();
+}
+
+function checkAndActivateMarquee() {
+    setTimeout(() => {
+        document.querySelectorAll('.scroll-container').forEach(c => {
+            const txt = c.querySelector('.scroll-text'); if (!txt) return;
+            if (txt.offsetWidth > c.offsetWidth) { 
+                const originalText = txt.innerText;
+                txt.innerHTML = `${originalText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${originalText}`; 
+                txt.classList.add('marquee-active'); 
+            } else { txt.classList.remove('marquee-active'); }
+        });
+    }, 300);
+}
+
+function switchCategory(cat, el) { 
+    currentCategory = cat; document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active')); el.classList.add('active'); 
+    if (DOM.searchInput) DOM.searchInput.value = ''; 
+    renderCategoryList(cat); 
+}
+
+function filterMatches() { const term = trNormalize(DOM.searchInput.value); document.querySelectorAll('.match-list .match-card').forEach(c => { if(c.dataset.searchtext.includes(term)) c.classList.remove('hidden-card'); else c.classList.add('hidden-card'); }); }
+function closeWelcome() { const m = document.getElementById('welcomeModal'); if (m) m.classList.remove('show'); }
+
+function initApp() {
+    const yearEl = document.getElementById('currentYear');
+    if(yearEl) { yearEl.innerText = new Date().getFullYear(); }
+
+    toggleLightDarkMode(SafeStorage.get('sezocann_display_mode', 'dark'));
+    let st = SafeStorage.get('sezocann_theme', 'default'); applyTheme(st);
+    renderCategoryList('onemli'); renderFavoritesBar();
+    
+    if ("Notification" in window && Notification.permission === "granted" && DOM.pushBellBtn) { DOM.pushBellBtn.classList.add('bell-active'); }
+    
+    const m = document.getElementById('welcomeModal'); if(m) m.classList.add('show');
+    document.querySelectorAll('.t-card').forEach(c => c.classList.remove('active'));
+    const ac = document.getElementById(`theme-${st}`); if(ac) ac.classList.add('active');
+    if (DOM.searchInput) DOM.searchInput.addEventListener('input', filterMatches);
+    
+    window.addEventListener('resize', checkAndActivateMarquee);
+    
+    setTimeout(() => {
+        if (streamsData && streamsData['onemli'] && streamsData['onemli'].items.length > 0) { loadM3u8(streamsData['onemli'].items[0].url, false); }
+    }, 150);
+}
+window.addEventListener('load', initApp);
+</script>
+</body>
+</html>
