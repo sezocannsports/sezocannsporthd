@@ -20,10 +20,11 @@
   --bg-card: #0b1120;
   --accent: #facc15; 
   --accent-dark: #ca8a04; 
-  --accent-glow: rgba(250, 204, 21, 0.12);
+  --accent-glow: rgba(250, 204, 21, 0.15);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
   --live-red: #ef4444;
+  --live-green: #22c55e;
   --border-color: rgba(255, 255, 255, 0.06);
   --input-bg: #0b1120;
   --ticker-bg: linear-gradient(90deg, #0b1120, #1e293b, #0b1120);
@@ -31,7 +32,7 @@
   --glass-bg: rgba(11, 17, 32, 0.85);
   --glass-border: rgba(255, 255, 255, 0.08);
   --logo-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 30%, #facc15 60%, #ffffff 100%);
-  --card-active-bg: linear-gradient(145deg, #0b1120 0%, #1e293b 100%);
+  --card-active-bg: linear-gradient(145deg, #0b1120 0%, #172554 100%);
 }
 
 /* BEYAZ MOD AYARLARI */
@@ -47,22 +48,22 @@ body.light-mode {
   --glass-bg: rgba(255, 255, 255, 0.9);
   --glass-border: rgba(0, 0, 0, 0.06);
   --logo-gradient: linear-gradient(135deg, #0f172a 0%, #0f172a 40%, #facc15 70%, #0f172a 100%);
-  --card-active-bg: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --card-active-bg: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%);
 }
 
 /* SÜPER LİG TAKIM TEMALARI */
 body.gs-theme-active:not(.light-mode) {
-  --bg-main: #1a0303; --bg-card: #260606; --accent: #facc15; --accent-dark: #991b1b; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #1f0404; --ticker-bg: linear-gradient(90deg, #260606, #3b0707, #260606); --glass-bg: rgba(38, 6, 6, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #b91c1c 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #260606 0%, #3b0707 100%);
+  --bg-main: #1a0303; --bg-card: #260606; --accent: #facc15; --accent-dark: #991b1b; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #1f0404; --ticker-bg: linear-gradient(90deg, #260606, #3b0707, #260606); --glass-bg: rgba(38, 6, 6, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #b91c1c 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #260606 0%, #4c0519 100%);
 }
 body.fb-theme-active:not(.light-mode) {
-  --bg-main: #030a14; --bg-card: #061529; --accent: #facc15; --accent-dark: #1e40af; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #041021; --ticker-bg: linear-gradient(90deg, #061529, #0a2246, #061529); --glass-bg: rgba(6, 21, 41, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #1d4ed8 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #061529 0%, #0a2246 100%);
+  --bg-main: #030a14; --bg-card: #061529; --accent: #facc15; --accent-dark: #1e40af; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #041021; --ticker-bg: linear-gradient(90deg, #061529, #0a2246, #061529); --glass-bg: rgba(6, 21, 41, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #1d4ed8 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #061529 0%, #172554 100%);
 }
 body.bjk-theme-active:not(.light-mode) {
-  --bg-main: #030303; --bg-card: #0d0d0d; --accent: #ffffff; --accent-dark: #262626; --accent-glow: rgba(255, 255, 255, 0.1); --border-color: rgba(255, 255, 255, 0.12); --input-bg: #141414; --ticker-bg: linear-gradient(90deg, #0d0d0d, #1a1a1a, #0d0d0d); --glass-bg: rgba(13, 13, 13, 0.85); --logo-gradient: linear-gradient(135deg, #ffffff 0%, #111111 50%, #ffffff 100%); --card-active-bg: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%);
+  --bg-main: #030303; --bg-card: #0d0d0d; --accent: #ffffff; --accent-dark: #262626; --accent-glow: rgba(255, 255, 255, 0.1); --border-color: rgba(255, 255, 255, 0.12); --input-bg: #141414; --ticker-bg: linear-gradient(90deg, #0d0d0d, #1a1a1a, #0d0d0d); --glass-bg: rgba(13, 13, 13, 0.85); --logo-gradient: linear-gradient(135deg, #ffffff 0%, #111111 50%, #ffffff 100%); --card-active-bg: linear-gradient(145deg, #0d0d0d 0%, #262626 100%);
   animation: bjkGlow 8s infinite alternate;
 }
 body.ts-theme-active:not(.light-mode) {
-  --bg-main: #080204; --bg-card: #170409; --accent: #22d3ee; --accent-dark: #9f1239; --accent-glow: rgba(34, 211, 238, 0.12); --border-color: rgba(34, 211, 238, 0.12); --input-bg: #120307; --ticker-bg: linear-gradient(90deg, #170409, #2b0712, #170409); --glass-bg: rgba(23, 4, 9, 0.85); --logo-gradient: linear-gradient(135deg, #22d3ee 0%, #be123c 50%, #22d3ee 100%); --card-active-bg: linear-gradient(145deg, #170409 0%, #2b0712 100%);
+  --bg-main: #080204; --bg-card: #170409; --accent: #22d3ee; --accent-dark: #9f1239; --accent-glow: rgba(34, 211, 238, 0.12); --border-color: rgba(34, 211, 238, 0.12); --input-bg: #120307; --ticker-bg: linear-gradient(90deg, #170409, #2b0712, #170409); --glass-bg: rgba(23, 4, 9, 0.85); --logo-gradient: linear-gradient(135deg, #22d3ee 0%, #be123c 50%, #22d3ee 100%); --card-active-bg: linear-gradient(145deg, #170409 0%, #4c0519 100%);
 }
 
 @keyframes bjkGlow {
@@ -72,6 +73,10 @@ body.ts-theme-active:not(.light-mode) {
 
 body.light-mode .action-btn-top, body.light-mode .mini-action-btn, body.light-mode .chat-btn, body.light-mode .fav-chip { background: #ffffff; border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-main); color: var(--text-main); }
 body.light-mode .chat-btn.active-chat { background: var(--accent) !important; color: #0f172a !important; border-color: var(--accent) !important; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
 body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 110px; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
@@ -121,6 +126,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
     z-index: 20; 
     transform: translateZ(0);
     backface-visibility: hidden;
+    scroll-margin-top: 15px; 
 }
 
 .select-match-placeholder {
@@ -211,7 +217,7 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .text-insta { color: #e1306c; font-weight: 800; }
 .text-tele { color: #0088cc; font-weight: 800; }
 
-/* KISA BİR MOLA PANELİ */
+/* REJİ UYARI PANELİ */
 .player-error { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111827 0%, #070b14 100%); color: var(--text-main); flex-direction: column; align-items: center; justify-content: center; z-index: 999; text-align: center; padding: 20px; }
 .reji-icon { font-size: 2.2rem; color: #facc15; margin-bottom: 10px; animation: alertPulse 1.2s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.4)); }
 @keyframes alertPulse { 0% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
@@ -327,10 +333,6 @@ body.light-mode .mode-btn.active { box-shadow: 0 4px 12px rgba(15,23,42,0.15); }
     position: relative;
     overflow: hidden;
 }
-.t-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%); opacity: 0; transition: opacity 0.2s;
-}
 .t-card:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.04); transform: translateY(-2px); }
 .t-card.active { 
     border-color: var(--accent); 
@@ -360,21 +362,19 @@ body.light-mode .t-card.active { border-color: #facc15; background: rgba(250, 20
 .search-bar input:focus { border-color: var(--accent); }
 
 .chat-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 0 16px; height: 44px; border-radius: 14px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.chat-pulse { animation: chatBtnPulse 2s infinite; border-color: var(--accent) !important; color: var(--accent) !important; }
-@keyframes chatBtnPulse { 0% { box-shadow: 0 0 0 0 var(--accent-glow); transform: scale(1); } 70% { box-shadow: 0 0 0 8px rgba(250, 204, 21, 0); transform: scale(1.03); } 100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); transform: scale(1); } }
-.chat-btn.active-chat { background: var(--accent) !important; color: #000 !important; border-color: var(--accent) !important; animation: none; }
+.chat-btn.active-chat { background: var(--accent) !important; color: #000 !important; border-color: var(--accent) !important; }
 
 .chat-wrapper { display: none; margin-bottom: 20px; width: 100%; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease; }
 .chat-wrapper.show-chat { display: block; opacity: 1; transform: translateY(0); }
 .chat-container { width: 100%; background: #070b12; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); padding: 4px; }
 .cbox-iframe { width: 100%; height: 350px; background: #070b12; border: none; display: block; border-radius: 12px; }
 
-/* REHBER */
+/* REHBER & MAÇ KARTLARI */
 .match-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
 .match-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; cursor: pointer; position: relative; width: 100%; overflow: hidden; transition: all 0.25s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: cardEntrance 0.4s ease both; }
 @keyframes cardEntrance { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
 .match-card:hover { transform: translateY(-2px); border-color: rgba(250, 204, 21, 0.3); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-.match-card.active { background: var(--card-active-bg); border-color: var(--accent); box-shadow: 0 4px 12px var(--accent-glow); }
+.match-card.active { background: var(--card-active-bg); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
 
 .match-card-active-bg { 
     display: grid;
@@ -387,14 +387,26 @@ body.light-mode .t-card.active { border-color: #facc15; background: rgba(250, 20
 } 
 
 .section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; z-index: 5; letter-spacing: 0.3px; }
-body.default-theme-active .section-badge, body.light-mode .section-badge { color: #000; }
-body.border-theme-active .section-badge { color: #fff; background: #111; border: 1px solid #fff; }
 .hidden-card { display: none !important; }
 
 .match-left { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 4px; flex: 1; }
-.live-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; gap: 1px; flex-shrink: 0; width: 45px; }
+.live-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; gap: 1px; flex-shrink: 0; width: 52px; }
 .live-badge .live-text { display: flex; align-items: center; gap: 4px; color: var(--live-red); position: relative; padding-left: 12px; font-weight: 900; }
 .live-badge .live-text::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; background-color: var(--live-red); border-radius: 50%; animation: liveDotPulse 1.5s infinite ease-in-out; }
+
+/* MINI SKOR & DURUM ROZETİ */
+.score-badge {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent);
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 4px;
+    margin-left: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+body.light-mode .score-badge { background: #f1f5f9; color: #0f172a; }
 
 @keyframes liveDotPulse { 0% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } 50% { transform: translateY(-50%) scale(1.2); opacity: 1; } 100% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } }
 .live-badge .match-time-sub { font-size: 0.62rem; color: var(--text-muted); font-weight: 700; padding-left: 12px; }
@@ -437,7 +449,7 @@ body.border-theme-active .section-badge { color: #fff; background: #111; border:
     100% { transform: translate3d(-50%, 0, 0); } 
 }
 
-.team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); }
+.team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); position: relative; }
 .match-card.active .team-avatar { color: var(--accent); border-color: var(--accent); background: rgba(255,255,255,0.06); }
 
 .card-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
@@ -451,32 +463,9 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 .match-card.active .play-icon-btn { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 800; }
 .match-card.active .play-icon-btn i { color: #000 !important; }
 
-/* ALT KISIM TÜM CİHAZLARI KAPSAYACAK ŞEKİLDE MANTIKLI HALE GETİRİLDİ */
-.site-footer {
-    text-align: center;
-    padding: 24px 15px;
-    margin-top: 20px;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.5px;
-    line-height: 1.6;
-}
-.site-footer .footer-brand {
-    font-weight: 800;
-    color: var(--text-main);
-    letter-spacing: 0.2px;
-}
-.site-footer .footer-brand span {
-    color: var(--accent);
-    font-weight: 900;
-}
-.site-footer i {
-    color: var(--live-red);
-    margin: 0 2px;
-    font-size: 0.65rem;
-}
+.site-footer { text-align: center; padding: 24px 15px; margin-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; line-height: 1.6; }
+.site-footer .footer-brand { font-weight: 800; color: var(--text-main); letter-spacing: 0.2px; }
+.site-footer .footer-brand span { color: var(--accent); font-weight: 900; }
 
 .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--glass-border); display: flex; justify-content: space-around; padding: 14px 0; z-index: 999; }
 .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: color 0.2s; }
@@ -487,26 +476,11 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 .custom-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-main); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10000; display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; }
 .custom-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* TELEFONLARDA (MOBİLDE) ALT MENÜ DÜZENLEMESİ */
 @media screen and (max-width: 480px) {
-  .bottom-nav {
-    padding: 8px 0; /* Menü yüksekliğini biraz daralttık */
-  }
-  .nav-item {
-    font-size: 0.62rem !important; /* Telefonlarda yazıyı kibarlaştırdık */
-    gap: 2px !important;
-    padding: 0 3px !important;
-    text-align: center;
-  }
-  .nav-item i {
-    font-size: 1.05rem !important; /* İkonu küçülterek yazıyla dengeli yaptık */
-  }
-  /* Günün Önemli Karşılaşmaları alanına özel sınır ve taşma önleyici */
-  #nav-onemli {
-    max-width: 42% !important;
-    white-space: normal !important;
-    line-height: 1.15 !important;
-  }
+  .bottom-nav { padding: 8px 0; }
+  .nav-item { font-size: 0.62rem !important; gap: 2px !important; padding: 0 3px !important; text-align: center; }
+  .nav-item i { font-size: 1.05rem !important; }
+  #nav-onemli { max-width: 42% !important; white-space: normal !important; line-height: 1.15 !important; }
 }
 </style>
 </head>
@@ -578,7 +552,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 
 <main class="main-container">
   <div class="layout-left">
-    <div class="player-container">
+    <div class="player-container" id="mainPlayerSection">
       
       <div class="select-match-placeholder" id="selectMatchPlaceholder">
            <div class="sm-logo-glow">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></div>
@@ -593,7 +567,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
       <div id="playerError" class="player-error">
           <i class="fa-solid fa-triangle-exclamation reji-icon"></i>
           <h2 class="reji-title">Kısa Bir Mola!</h2>
-          <p class="reji-subtitle">Sunucularimizi senin için daha kaliteli ve akici hale getiriyoruz. Hemen bitirip dönüyoruz!</p>
+          <p class="reji-subtitle">Yayın şu an güncelleniyor veya sunucu yenileniyor. Sistem otomatik olarak yeniden bağlanmayı deniyor...</p>
           <button class="retry-btn" id="retryStreamBtn" onclick="retryCurrentStream()"><i class="fa-solid fa-rotate-right" id="retryIcon"></i> Yeniden Dene</button>
       </div>
     </div>
@@ -634,7 +608,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 
   <footer class="site-footer">
     <div class="footer-brand">© <span id="currentYear"></span> SEZOCANN SPORTS <span>ʜᴅ</span></div>
-    <div>Tüm hakları saklıdır. Tasarım ve altyapı tüm cihazlarla (Mobil, Tablet, PC) tam uyumludur.</div>
+    <div>Tüm hakları saklıdır. Altyapı tüm cihazlarla tam uyumludur.</div>
   </footer>
 </main>
 
@@ -648,7 +622,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 
 <script type="text/javascript">
 const themes = {
-    default: { dark: '#facc15', dark_d: '#ca8a04', bg: '#060913', card: '#0b1120', glow: 'rgba(250, 204, 21, 0.1)' },
+    default: { dark: '#facc15', dark_d: '#ca8a04', bg: '#060913', card: '#0b1120', glow: 'rgba(250, 204, 21, 0.15)' },
     gs: { dark: '#facc15', dark_d: '#991b1b', bg: '#1a0303', card: '#260606', glow: 'rgba(250, 204, 21, 0.12)' },
     fb: { dark: '#facc15', dark_d: '#1e40af', bg: '#030a14', card: '#061529', glow: 'rgba(250, 204, 21, 0.12)' },
     bjk: { dark: '#ffffff', dark_d: '#262626', bg: '#030303', card: '#0d0d0d', glow: 'rgba(255, 255, 255, 0.1)' },
@@ -682,45 +656,37 @@ const DOM = {
     toast: document.getElementById('siteToast'),
     toastMsg: document.getElementById('toastMsg'),
     toastIcon: document.getElementById('toastIcon'),
-    siteLogo: document.getElementById('siteLogo'),
     placeholder: document.getElementById('selectMatchPlaceholder'),
-    beepAudio: document.getElementById('beepAudio')
+    beepAudio: document.getElementById('beepAudio'),
+    playerSection: document.getElementById('mainPlayerSection')
 };
 
 const streamsData = {
     onemli: {
         items: [
-            { 
-                id: "venezuela_turkiye", 
-                isLive: true, 
-                startTime: "01:00", 
-                league: "MİLLİ MAÇ", 
-                teams: "VENEZUELA - TÜRKİYE", 
-                url: "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv.m3u8", 
-                customBadge: "MİLLİ TAKIM"
-            }
+            { id: "venezuela_turkiye", isLive: true, startTime: "01:00", statusText: "YAYINDA", league: "MİLLİ MAÇ", teams: "VENEZUELA - TÜRKİYE", url: "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv.m3u8", customBadge: "MİLLİ TAKIM" }
         ]
     },
     spor: {
         items: [
-            { id: "trt_1_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
-            { id: "trt_spor_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
-            { id: "trt_spor_yildiz_hd", isLive: true, startTime: "7/24", league: "TRT SPOR", teams: "TRT SPOR YILDIZ HD", url: "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor?token=T_MR2dlUlLliLWtRgSdDHg&tms=1780708843" },
-            { id: "trt_2_hd", isLive: true, startTime: "7/24", league: "TRT", teams: "TRT 2 HD", url: "https://tv-trt2.medya.trt.com.tr/master.m3u8" },
-            { id: "tabii_spor_hd_main", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR HD", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_4k_main", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 4K", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_1_hd", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 HD", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_1_4k", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 4K", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_2_hd_new", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 HD", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_2_4k_new", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 4K", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_3_hd_new", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 HD", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_3_4k_new", isLive: true, startTime: "7/24", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 4K", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1440p.m3u8" }
+            { id: "trt_1_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
+            { id: "trt_spor_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
+            { id: "trt_spor_yildiz_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT SPOR", teams: "TRT SPOR YILDIZ HD", url: "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor?token=T_MR2dlUlLliLWtRgSdDHg&tms=1780708843" },
+            { id: "trt_2_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT 2 HD", url: "https://tv-trt2.medya.trt.com.tr/master.m3u8" },
+            { id: "tabii_spor_hd_main", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR HD", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1080p.m3u8" },
+            { id: "tabii_spor_4k_main", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 4K", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1440p.m3u8" },
+            { id: "tabii_spor_1_hd", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 HD", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1080p.m3u8" },
+            { id: "tabii_spor_1_4k", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 4K", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1440p.m3u8" },
+            { id: "tabii_spor_2_hd_new", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 HD", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1080p.m3u8" },
+            { id: "tabii_spor_2_4k_new", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 4K", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1440p.m3u8" },
+            { id: "tabii_spor_3_hd_new", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 HD", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1080p.m3u8" },
+            { id: "tabii_spor_3_4k_new", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 4K", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1440p.m3u8" }
         ]
     }
 };
 
 let currentCategory = 'onemli'; let vjsPlayer = null; let currentUrl = ''; let toastTimer = null;
-let isStreamPlaying = false; 
+let isStreamPlaying = false; let reconnectInterval = null;
 
 function showToast(msg, iconClass = "fa-circle-check") {
     if(!DOM.toast || !DOM.toastMsg || !DOM.toastIcon) return;
@@ -760,6 +726,14 @@ function retryCurrentStream() {
 function triggerStreamError() { 
     if(isStreamPlaying && DOM.playerError) {
         DOM.playerError.style.display = 'flex'; 
+        if(!reconnectInterval) {
+            reconnectInterval = setInterval(() => {
+                if(currentUrl && isStreamPlaying) {
+                    console.log("Yayın koptu, otomatik yeniden bağlanma deneniyor...");
+                    retryCurrentStream();
+                }
+            }, 5000);
+        }
     }
 }
 
@@ -768,9 +742,8 @@ function loadM3u8(url, autoPlayCheck = false) {
     if(DOM.playerError) DOM.playerError.style.display = 'none'; 
     if(autoPlayCheck && DOM.placeholder) { DOM.placeholder.style.display = 'none'; }
     
-    if (autoPlayCheck) {
-        isStreamPlaying = true;
-    }
+    if (autoPlayCheck) { isStreamPlaying = true; }
+    if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
 
     const cacheBuster = url.includes('?') ? '&' : '?';
     const finalStreamUrl = url + cacheBuster + "szc_live=" + new Date().getTime();
@@ -788,8 +761,11 @@ function loadM3u8(url, autoPlayCheck = false) {
             liveTracker: { trackingThreshold: 0, liveTolerance: 3 }
         });
 
-        const videoElement = document.getElementById('sezocannVideo');
-        if(videoElement) { videoElement.setAttribute('importance', 'high'); }
+        vjsPlayer.on('error', function() { triggerStreamError(); });
+        vjsPlayer.on('playing', function() { 
+            if(DOM.playerError) DOM.playerError.style.display = 'none';
+            if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
+        });
 
         const controlBar = vjsPlayer.getChild('controlBar');
         if (controlBar) {
@@ -802,7 +778,6 @@ function loadM3u8(url, autoPlayCheck = false) {
                 if(DOM.beepAudio) { DOM.beepAudio.currentTime = 0; DOM.beepAudio.play(); showToast("Sinyal test kanallari aktif! 🔔", "fa-volume-high"); }
             };
         }
-        vjsPlayer.on('error', function() { triggerStreamError(); });
     }
 
     try {
@@ -830,7 +805,12 @@ function toggleChat() {
   else { DOM.chatWrapper.classList.add('show-chat'); DOM.chatToggleBtn.classList.add('active-chat'); } 
 }
 
-function playStreamDirectly(item) { loadM3u8(item.url, true); }
+function playStreamDirectly(item, cardEl) { 
+    loadM3u8(item.url, true); 
+    if(DOM.playerSection) {
+        DOM.playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
 function getFavorites() { try { return JSON.parse(SafeStorage.get('sezocann_favorites', '[]')) || []; } catch(e) { return []; } }
 function saveFavorites(f) { SafeStorage.set('sezocann_favorites', JSON.stringify(f)); }
 
@@ -865,11 +845,16 @@ function renderCategoryList(category) {
         card.innerHTML = (item.customBadge ? `<div class="section-badge">${item.customBadge}</div>` : '') + `
             <div class="match-card-active-bg">
                 <div class="match-left">
-                  <div class="live-badge"><span class="live-text">Canli</span><span class="match-time-sub">${item.startTime}</span></div>
+                  <div class="live-badge">
+                     <span class="live-text">Canli</span>
+                     <span class="match-time-sub">${item.startTime}</span>
+                  </div>
                   <div class="match-info">
-                    <div class="league-name">${item.league}</div>
+                    <div class="league-name">${item.league} <span class="score-badge">${item.statusText || 'AKTİF'}</span></div>
                     <div class="teams">
-                        <div class="team-avatar"><i class="fa-solid fa-tv"></i></div>
+                        <div class="team-avatar">
+                           <i class="fa-solid fa-tv"></i>
+                        </div>
                         <div class="scroll-container"><span class="scroll-text">${item.teams}</span></div>
                     </div>
                   </div>
@@ -884,7 +869,11 @@ function renderCategoryList(category) {
         card.querySelector('.share-btn').addEventListener('click', (e) => { e.stopPropagation(); shareMatch(item.teams); });
         card.querySelector('.fav-btn').addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(item); });
         
-        card.onclick = () => { document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active')); card.classList.add('active'); playStreamDirectly(item); };
+        card.onclick = () => { 
+            document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active')); 
+            card.classList.add('active'); 
+            playStreamDirectly(item); 
+        };
         DOM.matchList.appendChild(card);
     });
     checkAndActivateMarquee();
