@@ -74,10 +74,7 @@ body.ts-theme-active:not(.light-mode) {
 body.light-mode .action-btn-top, body.light-mode .mini-action-btn, body.light-mode .chat-btn, body.light-mode .fav-chip { background: #ffffff; border: 1px solid var(--border-color); box-shadow: 0 2px 5px var(--shadow-main); color: var(--text-main); }
 body.light-mode .chat-btn.active-chat { background: var(--accent) !important; color: #0f172a !important; border-color: var(--accent) !important; }
 
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
 body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 110px; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
 
@@ -207,10 +204,10 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 
 /* TICKER */
 .ticker-container { background: var(--ticker-bg); overflow: hidden; position: relative; z-index: 10; width: 100%; margin: 0 auto 16px auto; padding: 10px 0; border-radius: 14px; box-shadow: 0 4px 15px var(--shadow-main); border: 1px solid var(--border-color); display: flex; align-items: center; contain: content; }
-.ticker-wrap { display: flex; width: max-content; white-space: nowrap; animation: smoothMarquee 35s linear infinite; padding-left: 100%; }
+.ticker-wrap { display: flex; width: max-content; white-space: nowrap; animation: smoothMarquee 35s linear infinite; padding-left: 100%; will-change: transform; }
 .ticker-group { display: flex; align-items: center; flex-shrink: 0; }
 .ticker-item { color: var(--text-main); font-size: clamp(0.75rem, 2.3vw, 0.82rem); font-weight: 700; padding: 0 20px; letter-spacing: 0.3px; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; white-space: nowrap; line-height: 1.2; }
-.ticker-item::after { content: "•"; color: var(--text-muted); font-size: 1rem; padding-left: 20px; opacity: 0.25; }
+.ticker-item::after { content: ""; padding-left: 10px; }
 
 @keyframes smoothMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 .text-premium { color: var(--accent); font-weight: 900; }
@@ -394,25 +391,20 @@ body.light-mode .t-card.active { border-color: #facc15; background: rgba(250, 20
 .live-badge .live-text { display: flex; align-items: center; gap: 4px; color: var(--live-red); position: relative; padding-left: 12px; font-weight: 900; }
 .live-badge .live-text::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; background-color: var(--live-red); border-radius: 50%; animation: liveDotPulse 1.5s infinite ease-in-out; }
 
-/* MINI SKOR & DURUM ROZETİ */
-.score-badge {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--accent);
-    font-size: 0.6rem;
-    font-weight: 800;
-    padding: 1px 5px;
-    border-radius: 4px;
-    margin-left: 12px;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-body.light-mode .score-badge { background: #f1f5f9; color: #0f172a; }
-
 @keyframes liveDotPulse { 0% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } 50% { transform: translateY(-50%) scale(1.2); opacity: 1; } 100% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } }
 .live-badge .match-time-sub { font-size: 0.62rem; color: var(--text-muted); font-weight: 700; padding-left: 12px; }
 
 .match-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow: hidden; flex: 1; }
-.league-name { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; letter-spacing: 0.3px; opacity: 0.8; }
+
+.league-name { 
+    font-size: 0.65rem; 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    font-weight: 700; 
+    white-space: nowrap; 
+    letter-spacing: 0.3px; 
+    opacity: 0.8; 
+}
 
 .teams { 
     display: flex; 
@@ -433,20 +425,26 @@ body.light-mode .score-badge { background: #f1f5f9; color: #0f172a; }
     position: relative;
     display: flex;
 }
+
+/* PÜRÜZSÜZ AKAN TEMİZ KAYAN YAZI */
 .scroll-text { 
     display: inline-block; 
     color: var(--text-main); 
     will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .marquee-active { 
     display: inline-block;
-    animation: textMarquee 10s linear infinite; 
+    padding-left: 100%;
+    animation: textMarqueeSmooth 10s linear infinite; 
 } 
 
-@keyframes textMarquee { 
+@keyframes textMarqueeSmooth { 
     0% { transform: translate3d(0, 0, 0); } 
-    100% { transform: translate3d(-50%, 0, 0); } 
+    100% { transform: translate3d(-100%, 0, 0); } 
 }
 
 .team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); position: relative; }
@@ -608,7 +606,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 
   <footer class="site-footer">
     <div class="footer-brand">© <span id="currentYear"></span> SEZOCANN SPORTS <span>ʜᴅ</span></div>
-    <div>Tüm hakları saklıdır. Altyapı tüm cihazlarla tam uyumludur.</div>
+    <div>Bu web sitesinde yer alan tüm tasarım, arayüz ve kodlama yapısı SEZAİCANN1'e aittir.</div>
   </footer>
 </main>
 
@@ -663,24 +661,14 @@ const DOM = {
 
 const streamsData = {
     onemli: {
-        items: [
-            { id: "venezuela_turkiye", isLive: true, startTime: "🏆", statusText: "YAYINDA", league: "DÜNYA KUPASI", teams: "DÜNYA KUPASI 7/24 PANELİNDE", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8", customBadge: "CANLI" }
-        ]
+        items: []
     },
     spor: {
         items: [
             { id: "trt_1_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
             { id: "trt_spor_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
-            { id: "trt_spor_yildiz_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT SPOR", teams: "TRT SPOR YILDIZ HD", url: "https://trt.daioncdn.net/trtspor-yildiz/master.m3u8?app=web&platform=trtspor?token=T_MR2dlUlLliLWtRgSdDHg&tms=1780708843" },
-            { id: "trt_2_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT 2 HD", url: "https://tv-trt2.medya.trt.com.tr/master.m3u8" },
-            { id: "tabii_spor_hd_main", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR HD", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_4k_main", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 4K", url: "https://kL9mR2vXw7nQ5pY1sH4tJ3gB6.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_1_hd", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 HD", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_1_4k", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 1 4K", url: "https://Pz4qT7nW1mR9sH2vL5xK8jG3y.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_2_hd_new", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 HD", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_2_4k_new", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 2 4K", url: "https://mR8bV4kL1nQ7sH9tW2xP5zJ6g.medya.trt.com.tr/master_1440p.m3u8" },
-            { id: "tabii_spor_3_hd_new", isLive: true, startTime: "7/24", statusText: "1080P", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 HD", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1080p.m3u8" },
-            { id: "tabii_spor_3_4k_new", isLive: true, startTime: "7/24", statusText: "4K UHD", league: "TABİİ SPOR", teams: "TABİİ SPOR 3 4K", url: "https://mR4vL7nQ2sH9tW5xP1zK3gJ8b.medya.trt.com.tr/master_1440p.m3u8" }
+            { id: "s_sport_1", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "S SPORT", teams: "S SPORT 1", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8" },
+            { id: "s_sport_2", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "S SPORT", teams: "S SPORT 2", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport2/tracks-v1a1/mono.m3u8" }
         ]
     }
 };
@@ -714,8 +702,8 @@ function setTheme(key, el) { applyTheme(key); document.querySelectorAll('.t-card
 function gitInstagram() { window.open("https://www.instagram.com/sezaicann1", '_blank'); }
 function gitTelegram() { window.open("https://t.me/sezocannsports", '_blank'); }
 
-function shareSite() { try { navigator.clipboard.writeText(window.location.href); showToast("Yayin linki başariyla kopyalandi! 🚀"); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', url: window.location.href }); } }
-function shareMatch(t) { try { navigator.clipboard.writeText(window.location.href); showToast(`${t} kopyalandi! 🚀`); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canli İzle!` }); } }
+function shareSite() { try { navigator.clipboard.writeText(window.location.href); showToast("Yayın linki başarıyla kopyalandı! 🚀"); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', url: window.location.href }); } }
+function shareMatch(t) { try { navigator.clipboard.writeText(window.location.href); showToast(`${t} kopyalandı! 🚀`); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canlı İzle!` }); } }
 
 function retryCurrentStream() { 
     const retryIcon = document.getElementById('retryIcon');
@@ -729,7 +717,6 @@ function triggerStreamError() {
         if(!reconnectInterval) {
             reconnectInterval = setInterval(() => {
                 if(currentUrl && isStreamPlaying) {
-                    console.log("Yayın koptu, otomatik yeniden bağlanma deneniyor...");
                     retryCurrentStream();
                 }
             }, 5000);
@@ -775,7 +762,7 @@ function loadM3u8(url, autoPlayCheck = false) {
             });
             beepButton.el().onclick = function(e) {
                 e.stopPropagation();
-                if(DOM.beepAudio) { DOM.beepAudio.currentTime = 0; DOM.beepAudio.play(); showToast("Sinyal test kanallari aktif! 🔔", "fa-volume-high"); }
+                if(DOM.beepAudio) { DOM.beepAudio.currentTime = 0; DOM.beepAudio.play(); showToast("Sinyal test kanalları aktif! 🔔", "fa-volume-high"); }
             };
         }
     }
@@ -789,12 +776,12 @@ function loadM3u8(url, autoPlayCheck = false) {
 }
 
 function requestPushNotification() { 
-    if (!("Notification" in window)) { showToast("Tarayiciniz bildirimleri desteklemiyor.", "fa-exclamation-triangle"); return; }
+    if (!("Notification" in window)) { showToast("Tarayıcınız bildirimleri desteklemiyor.", "fa-exclamation-triangle"); return; }
     Notification.requestPermission().then(permission => {
         if (permission === "granted") {
             if(DOM.pushBellBtn) DOM.pushBellBtn.classList.add('bell-active');
-            showToast("Anlik maç bildirimleri aktif! 🔔");
-            new Notification("SEZOCANN SPORTS HD", { body: "Anlik maç ve canli yayin bildirim sistemi başariyla aktifleştirildi! ⚽" });
+            showToast("Anlık maç bildirimleri aktif! 🔔");
+            new Notification("SEZOCANN SPORTS HD", { body: "Anlık maç ve canlı yayın bildirim sistemi başarıyla aktifleştirildi! ⚽" });
         } else { showToast("Bildirim izinleri reddedildi.", "fa-bell-slash"); }
     });
 }
@@ -817,7 +804,7 @@ function saveFavorites(f) { SafeStorage.set('sezocann_favorites', JSON.stringify
 function toggleFavorite(item) {
     let f = getFavorites(); const idx = f.findIndex(x => x.id === item.id);
     if (idx === -1) { f.push(item); showToast("Favorilere eklendi!", "fa-heart"); } 
-    else { f.splice(idx, 1); showToast("Favorilerden çikarildi!", "fa-heart-crack"); }
+    else { f.splice(idx, 1); showToast("Favorilerden çıkarıldı!", "fa-heart-crack"); }
     saveFavorites(f); renderFavoritesBar(); renderCategoryList(currentCategory);
 }
 
@@ -836,7 +823,7 @@ function renderFavoritesBar() {
 function renderCategoryList(category) {
     if(!DOM.matchList) return; DOM.matchList.innerHTML = "";
     let items = category === 'favoriler' ? getFavorites() : (streamsData[category] ? streamsData[category].items : []);
-    if (!items || items.length === 0) { DOM.matchList.innerHTML = `<div style="text-align:center; padding:30px 15px; color:var(--text-muted); font-size:0.75rem; font-weight:500;"><i class="fa-solid fa-heart-circle-plus" style="font-size:1.5rem; margin-bottom:8px; display:block; opacity:0.3;"></i>Liste Boş.</div>`; return; }
+    if (!items || items.length === 0) { DOM.matchList.innerHTML = `<div style="text-align:center; padding:30px 15px; color:var(--text-muted); font-size:0.75rem; font-weight:500;"><i class="fa-solid fa-heart-circle-plus" style="font-size:1.5rem; margin-bottom:8px; display:block; opacity:0.3;"></i>Liste Boş veya Yükleniyor...</div>`; return; }
 
     items.forEach((item) => {
         const faved = getFavorites().some(x => x.id === item.id); const card = document.createElement('div'); card.className = `match-card`;
@@ -846,11 +833,11 @@ function renderCategoryList(category) {
             <div class="match-card-active-bg">
                 <div class="match-left">
                   <div class="live-badge">
-                     <span class="live-text">Canli</span>
+                     <span class="live-text">Canlı</span>
                      <span class="match-time-sub">${item.startTime}</span>
                   </div>
                   <div class="match-info">
-                    <div class="league-name">${item.league} <span class="score-badge">${item.statusText || 'AKTİF'}</span></div>
+                    <div class="league-name">${item.league}</div>
                     <div class="teams">
                         <div class="team-avatar">
                            <i class="fa-solid fa-tv"></i>
@@ -884,12 +871,10 @@ function checkAndActivateMarquee() {
         document.querySelectorAll('.scroll-container').forEach(c => {
             const txt = c.querySelector('.scroll-text'); if (!txt) return;
             if (txt.offsetWidth > c.offsetWidth) { 
-                const originalText = txt.innerText;
-                if(!txt.innerHTML.includes('&nbsp;')) {
-                    txt.innerHTML = `${originalText} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${originalText}`; 
-                }
                 txt.classList.add('marquee-active'); 
-            } else { txt.classList.remove('marquee-active'); }
+            } else { 
+                txt.classList.remove('marquee-active'); 
+            }
         });
     }, 300);
 }
@@ -903,17 +888,98 @@ function switchCategory(cat, el) {
 function filterMatches() { const term = trNormalize(DOM.searchInput.value); document.querySelectorAll('.match-list .match-card').forEach(c => { if(c.dataset.searchtext.includes(term)) c.classList.remove('hidden-card'); else c.classList.add('hidden-card'); }); }
 function closeWelcome() { const m = document.getElementById('welcomeModal'); if (m) m.classList.remove('show'); }
 
-function initApp() {
+/* TÜRKİYE VE AVRUPA'NIN TÜM POPÜLER LİGLERİNİ OTOMATİK FİLTRELEYEN SİSTEM */
+async function fetchAutoMatches() {
+    try {
+        const localRes = await fetch('matches.json?v=' + new Date().getTime());
+        if (localRes.ok) {
+            const data = await localRes.json();
+            if (Array.isArray(data) && data.length > 0) {
+                streamsData.onemli.items = data;
+                return;
+            }
+        }
+    } catch(e) {}
+
+    try {
+        const now = new Date();
+        const dateStr = now.toISOString().split('T')[0];
+        const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${dateStr}&s=Soccer`);
+        
+        if (apiRes.ok) {
+            const apiData = await apiRes.json();
+            if (apiData && apiData.events && apiData.events.length > 0) {
+                
+                // TÜRKİYE + AVRUPA'NIN TÜM POPÜLER BÜYÜK LİGLERİ VE KUPALARI
+                const allowedLeagues = [
+                    "SUPER LIG", "TURKISH SUPER LIG", "TFF 1", 
+                    "PREMIER LEAGUE", "ENGLISH PREMIER LEAGUE", 
+                    "SERIE A", "ITALIAN SERIE A",
+                    "LA LIGA", "SPANISH LA LIGA", "PRIMERA DIVISION",
+                    "BUNDESLIGA", "GERMAN BUNDESLIGA",
+                    "LIGUE 1", "FRENCH LIGUE 1",
+                    "EREDIVISIE", "DUTCH EREDIVISIE",
+                    "PRIMEIRA LIGA", "PORTUGUESE PRIMEIRA LIGA",
+                    "UEFA CHAMPIONS LEAGUE", "CHAMPIONS LEAGUE",
+                    "UEFA EUROPA LEAGUE", "EUROPA LEAGUE", 
+                    "UEFA CONFERENCE LEAGUE", "CONFERENCE LEAGUE"
+                ];
+
+                const filteredEvents = apiData.events.filter(evt => {
+                    if (!evt.strLeague) return false;
+                    const leagueUpper = evt.strLeague.toUpperCase();
+                    return allowedLeagues.some(allowed => leagueUpper.includes(allowed));
+                });
+
+                if (filteredEvents.length > 0) {
+                    streamsData.onemli.items = filteredEvents.map((evt, idx) => {
+                        const matchTime = evt.strTime ? evt.strTime.substring(0, 5) : "20:45";
+                        return {
+                            id: "auto_selected_event_" + idx,
+                            isLive: true,
+                            startTime: matchTime,
+                            statusText: "CANLI",
+                            league: evt.strLeague.toUpperCase(),
+                            teams: `${evt.strHomeTeam} - ${evt.strAwayTeam}`,
+                            url: "https://tv-trt1.medya.trt.com.tr/master.m3u8",
+                            customBadge: idx === 0 ? "GÜNÜN MAÇI" : "CANLI YAYIN"
+                        };
+                    });
+                    return;
+                }
+            }
+        }
+    } catch(err) {}
+
+    // Liglerde maç bulunamazsa yedek yayın
+    streamsData.onemli.items = [
+        { 
+            id: "default_top_match", 
+            isLive: true, 
+            startTime: "20:45", 
+            statusText: "CANLI", 
+            league: "AVRUPA KUPALARI / CANLI YAYIN", 
+            teams: "RAMS Başakşehir - Inter Turku", 
+            url: "https://tv-trt1.medya.trt.com.tr/master.m3u8", 
+            customBadge: "GÜNÜN MAÇI" 
+        }
+    ];
+}
+
+async function initApp() {
     const yearEl = document.getElementById('currentYear');
     if(yearEl) { yearEl.innerText = new Date().getFullYear(); }
 
     toggleLightDarkMode(SafeStorage.get('sezocann_display_mode', 'dark'));
     let st = SafeStorage.get('sezocann_theme', 'default'); applyTheme(st);
+    
+    await fetchAutoMatches();
+    
     renderCategoryList('onemli'); renderFavoritesBar();
     
     if ("Notification" in window && Notification.permission === "granted" && DOM.pushBellBtn) { DOM.pushBellBtn.classList.add('bell-active'); }
     
-    const m = document.getElementById('welcomeModal'); if(m) m.classList.add('show');
+    const m = document.getElementById('welcomeModal'); if(m) m.classList.remove('show');
     document.querySelectorAll('.t-card').forEach(c => c.classList.remove('active'));
     const ac = document.getElementById(`theme-${st}`); if(ac) ac.classList.add('active');
     if (DOM.searchInput) DOM.searchInput.addEventListener('input', filterMatches);
