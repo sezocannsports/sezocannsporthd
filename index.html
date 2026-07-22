@@ -979,7 +979,7 @@ async function initApp() {
     
     if ("Notification" in window && Notification.permission === "granted" && DOM.pushBellBtn) { DOM.pushBellBtn.classList.add('bell-active'); }
     
-    const m = document.getElementById('welcomeModal'); if(m) m.classList.remove('show');
+    const m = document.getElementById('welcomeModal'); if(m) m.classList.add('show');
     document.querySelectorAll('.t-card').forEach(c => c.classList.remove('active'));
     const ac = document.getElementById(`theme-${st}`); if(ac) ac.classList.add('active');
     if (DOM.searchInput) DOM.searchInput.addEventListener('input', filterMatches);
