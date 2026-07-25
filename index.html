@@ -2,14 +2,19 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>⚡ SEZOCANN SPORTS ʜᴅ | Canlı Maç İzle ⚽</title>
+
+<!-- PWA Manifest & Theme Color -->
+<link rel="manifest" href="data:application/json,{%22name%22:%22SEZOCANN%20SPORTS%20HD%22,%22short_name%22:%22SEZOCANN%22,%22start_url%22:%22/%22,%22display%22:%22standalone%22,%22background_color%22:%22#060913%22,%22theme_color%22:%22#facc15%22}">
+<meta name="theme-color" content="#facc15">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=500;700;800;900&family=Rajdhani:wght=700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<!-- Video.js Styles & Scripts -->
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
@@ -51,7 +56,10 @@ body.light-mode {
   --card-active-bg: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%);
 }
 
-/* SÜPER LİG TAKIM TEMALARI */
+/* TAKIM TEMALARI & DEFAULT TEMA */
+body.default-theme-active:not(.light-mode) {
+  --bg-main: #060913; --bg-card: #0b1120; --accent: #facc15; --accent-dark: #ca8a04; --accent-glow: rgba(250, 204, 21, 0.15); --border-color: rgba(255, 255, 255, 0.06); --input-bg: #0b1120; --ticker-bg: linear-gradient(90deg, #0b1120, #1e293b, #0b1120); --glass-bg: rgba(11, 17, 32, 0.85); --logo-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 30%, #facc15 60%, #ffffff 100%); --card-active-bg: linear-gradient(145deg, #0b1120 0%, #172554 100%);
+}
 body.gs-theme-active:not(.light-mode) {
   --bg-main: #1a0303; --bg-card: #260606; --accent: #facc15; --accent-dark: #991b1b; --accent-glow: rgba(250, 204, 21, 0.12); --border-color: rgba(250, 204, 21, 0.12); --input-bg: #1f0404; --ticker-bg: linear-gradient(90deg, #260606, #3b0707, #260606); --glass-bg: rgba(38, 6, 6, 0.85); --logo-gradient: linear-gradient(135deg, #facc15 0%, #b91c1c 50%, #facc15 100%); --card-active-bg: linear-gradient(145deg, #260606 0%, #4c0519 100%);
 }
@@ -76,7 +84,11 @@ body.light-mode .chat-btn.active-chat { background: var(--accent) !important; co
 
 html { scroll-behavior: smooth; }
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 110px; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
+
+body, .match-card, .t-card, .action-btn-top, .search-bar input, .bottom-nav, .ticker-container {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+body { background-color: var(--bg-main); color: var(--text-main); min-height: 100vh; padding-bottom: 110px; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
 header { display: flex; justify-content: space-between; align-items: center; padding: 15px; max-width: 850px; margin: 0 auto; width: 100%; gap: 15px; position: relative; z-index: 10; }
 
@@ -93,9 +105,8 @@ header { display: flex; justify-content: space-between; align-items: center; pad
     background-clip: text; 
     animation: professionalShine 6s ease-in-out infinite; 
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); 
-    transition: transform 0.3s ease;
 }
-.logo .hd-tag, .sm-logo-glow .hd-tag, .welcome-title .hd-tag {
+.logo .hd-tag, .sm-logo-glow .hd-tag, .welcome-title .hd-tag, .loader-logo .hd-tag {
     font-size: 0.62em;
     vertical-align: super;
     margin-left: 3px;
@@ -105,11 +116,43 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 @keyframes professionalShine { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
 .header-right { display: flex; align-items: center; gap: 8px; }
-.action-btn-top { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95rem; transition: all 0.2s ease; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+
+.action-btn-top { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); color: var(--text-main); width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.95rem; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
 .action-btn-top:hover { border-color: var(--accent); background: rgba(255, 255, 255, 0.08); transform: translateY(-2px); }
-.action-btn-top.bell-active { background: var(--accent); color: #000; border-color: var(--accent); }
+.action-btn-top.bell-active, .action-btn-top.theater-active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+/* TELEGRAM ANIMASYONU */
+.telegram-btn-anim {
+    color: #0088cc !important;
+    border-color: rgba(0, 136, 204, 0.3) !important;
+}
+.telegram-btn-anim i {
+    animation: socialPulse 2.5s infinite ease-in-out;
+    display: inline-block;
+}
+
+/* INSTAGRAM ANIMASYONU */
+.instagram-btn-anim {
+    color: #e1306c !important;
+    border-color: rgba(225, 48, 108, 0.3) !important;
+}
+.instagram-btn-anim i {
+    animation: socialPulse 2.5s infinite ease-in-out;
+    display: inline-block;
+}
+
+@keyframes socialPulse {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.25) rotate(-12deg); }
+    40% { transform: scale(1.1) rotate(12deg); }
+    60% { transform: scale(1.2) rotate(-6deg); }
+    80%, 100% { transform: scale(1) rotate(0deg); }
+}
 
 .main-container { max-width: 850px; margin: 0 auto; padding: 0 15px; width: 100%; position: relative; z-index: 10; contain: content; }
+
+body.theater-mode header, body.theater-mode .main-container { max-width: 1200px; }
+body.theater-mode .player-container { height: 70vh; max-height: 700px; }
 
 .player-container { 
     width: 100%; 
@@ -122,7 +165,6 @@ header { display: flex; justify-content: space-between; align-items: center; pad
     border: 1px solid var(--border-color); 
     z-index: 20; 
     transform: translateZ(0);
-    backface-visibility: hidden;
     scroll-margin-top: 15px; 
 }
 
@@ -132,9 +174,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     z-index: 100; text-align: center; padding: 20px;
 }
-body.light-mode .select-match-placeholder {
-    background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%);
-}
+body.light-mode .select-match-placeholder { background: radial-gradient(circle at center, #ffffff 0%, #f1f5f9 100%); }
 
 .sm-logo-glow {
     font-size: clamp(1.1rem, 4vw, 1.45rem); 
@@ -162,8 +202,35 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 
 @keyframes placeholderPulse { 0% { transform: scale(0.98); } 100% { transform: scale(1.02); } }
 
-/* VIDEOJS AYARLARI */
-.video-js { width: 100% !important; height: 100% !important; background-color: #000; }
+/* YAYIN HAZIRLANIYOR EKRANI & LOGO */
+.stream-loader-overlay {
+    display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(6, 9, 19, 0.94); backdrop-filter: blur(8px);
+    z-index: 500; flex-direction: column; align-items: center; justify-content: space-between; padding: 25px 15px;
+}
+.loader-content {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; flex: 1;
+}
+.loader-spinner { width: 48px; height: 48px; border: 4px solid rgba(250, 204, 21, 0.2); border-top: 4px solid var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.loader-text { font-size: 0.85rem; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; text-transform: uppercase; }
+.loader-logo {
+    font-size: clamp(0.85rem, 3vw, 1.05rem);
+    font-weight: 900;
+    letter-spacing: -0.3px;
+    text-transform: uppercase;
+    background: var(--logo-gradient);
+    background-size: 400% 100%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: professionalShine 6s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    opacity: 0.9;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* VIDEOJS ÖZEL STİLLERİ */
+.video-js { width: 100% !important; height: 100% !important; background-color: #000; position: relative; z-index: 10; }
 .video-js .vjs-big-play-button { 
     background: rgba(8, 12, 20, 0.8) !important; 
     border: 2px solid var(--accent) !important; 
@@ -177,315 +244,278 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
     font-size: 1.8rem !important;
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 0 20px var(--accent-glow) !important; 
-    transition: all 0.3s ease !important;
 }
-.video-js:hover .vjs-big-play-button { transform: scale(1.08); box-shadow: 0 0 30px var(--accent) !important; }
-
-.vjs-beep-button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: var(--accent);
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-.vjs-beep-button:hover { color: #ffffff; transform: scale(1.1); }
-
-.video-js .vjs-control-bar { 
-    background: rgba(8, 12, 20, 0.75) !important; 
-    backdrop-filter: blur(15px) !important; -webkit-backdrop-filter: blur(15px) !important; 
-    border-top: 1px solid rgba(255,255,255,0.05) !important;
-    height: 48px !important;
-}
+.vjs-custom-icon-btn { cursor: pointer; display: flex !important; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent) !important; }
+.vjs-custom-icon-btn:hover { color: #fff !important; }
+.video-js .vjs-control-bar { background: rgba(8, 12, 20, 0.85) !important; backdrop-filter: blur(15px) !important; border-top: 1px solid rgba(255,255,255,0.08) !important; height: 48px !important; }
 .video-js .vjs-button { color: var(--text-main) !important; height: 48px !important; width: 40px !important; }
 .video-js .vjs-button:hover { color: var(--accent) !important; }
 .video-js .vjs-play-progress, .video-js .vjs-volume-level { background-color: var(--accent) !important; }
 
-/* TICKER */
-.ticker-container { background: var(--ticker-bg); overflow: hidden; position: relative; z-index: 10; width: 100%; margin: 0 auto 16px auto; padding: 10px 0; border-radius: 14px; box-shadow: 0 4px 15px var(--shadow-main); border: 1px solid var(--border-color); display: flex; align-items: center; contain: content; }
-.ticker-wrap { display: flex; width: max-content; white-space: nowrap; animation: smoothMarquee 35s linear infinite; padding-left: 100%; will-change: transform; }
-.ticker-group { display: flex; align-items: center; flex-shrink: 0; }
-.ticker-item { color: var(--text-main); font-size: clamp(0.75rem, 2.3vw, 0.82rem); font-weight: 700; padding: 0 20px; letter-spacing: 0.3px; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; white-space: nowrap; line-height: 1.2; }
-.ticker-item::after { content: ""; padding-left: 10px; }
+/* 🌟 KESİNTİSİZ & PÜRÜZSÜZ TICKER YAPISI (GPU ACCELERATED & Seamless Loop) 🌟 */
+.ticker-container { 
+    background: var(--ticker-bg); 
+    overflow: hidden; 
+    position: relative; 
+    z-index: 10; 
+    width: 100%; 
+    margin: 0 auto 16px auto; 
+    padding: 10px 0; 
+    border-radius: 14px; 
+    box-shadow: 0 4px 15px var(--shadow-main); 
+    border: 1px solid var(--border-color); 
+    display: flex; 
+    align-items: center; 
+}
 
-@keyframes smoothMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+.ticker-wrap { 
+    display: flex; 
+    width: max-content; 
+    white-space: nowrap; 
+    animation: smoothMarquee 25s linear infinite; 
+    will-change: transform; 
+    transform: translate3d(0, 0, 0); 
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.ticker-wrap:hover { animation-play-state: paused; }
+
+.ticker-group { 
+    display: flex; 
+    align-items: center; 
+    flex-shrink: 0; 
+}
+
+.ticker-item { 
+    color: var(--text-main); 
+    font-size: clamp(0.75rem, 2.3vw, 0.82rem); 
+    font-weight: 700; 
+    padding: 0 24px; 
+    letter-spacing: 0.3px; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    text-transform: uppercase; 
+    white-space: nowrap; 
+    line-height: 1.2; 
+}
+
+@keyframes smoothMarquee { 
+    0% { transform: translate3d(0, 0, 0); } 
+    100% { transform: translate3d(-50%, 0, 0); } 
+}
+
 .text-premium { color: var(--accent); font-weight: 900; }
 .text-insta { color: #e1306c; font-weight: 800; }
 .text-tele { color: #0088cc; font-weight: 800; }
 
-/* REJİ UYARI PANELİ */
-.player-error { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111827 0%, #070b14 100%); color: var(--text-main); flex-direction: column; align-items: center; justify-content: center; z-index: 999; text-align: center; padding: 20px; }
+.player-error { 
+    display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    background: radial-gradient(circle at center, #111827 0%, #070b14 100%); 
+    color: var(--text-main); flex-direction: column; align-items: center; justify-content: center; 
+    z-index: 1000; text-align: center; padding: 20px; 
+}
 .reji-icon { font-size: 2.2rem; color: #facc15; margin-bottom: 10px; animation: alertPulse 1.2s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.4)); }
 @keyframes alertPulse { 0% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
-.reji-title { font-size: clamp(1rem, 4.2vw, 1.15rem); font-weight: 900; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.reji-title { font-size: clamp(1rem, 4.2vw, 1.15rem); font-weight: 900; margin-bottom: 6px; text-transform: uppercase; }
 .reji-subtitle { font-size: clamp(0.75rem, 3vw, 0.82rem); color: var(--text-muted); margin-bottom: 15px; max-width: 300px; line-height: 1.4; font-weight: 600; }
+.retry-btn { background: rgba(255, 255, 255, 0.03); color: var(--text-main); border: 1px solid var(--accent); padding: 7px 16px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; cursor: pointer; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
 
-.retry-btn { 
-    background: rgba(255, 255, 255, 0.03); 
-    color: var(--text-main); 
-    border: 1px solid var(--accent); 
-    padding: 7px 16px; 
-    border-radius: 10px; 
-    font-size: 0.75rem; 
-    font-weight: 800; 
-    cursor: pointer; 
-    text-transform: uppercase; 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 6px; 
-    transition: all 0.2s ease; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+.offline-screen {
+    display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(6, 9, 19, 0.96); backdrop-filter: blur(12px);
+    z-index: 999999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
 }
-.retry-btn:hover { background: var(--accent); color: #000; transform: translateY(-1px); box-shadow: 0 4px 12px var(--accent-glow); }
+.offline-screen.show { display: flex; }
+.offline-icon { font-size: 3.5rem; color: var(--live-red); margin-bottom: 15px; }
 
-/* POPUP MODAL */
-.welcome-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 999999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
-.welcome-modal.show { display: flex; opacity: 1; }
-.welcome-content { background: linear-gradient(160deg, #0f172a 0%, #030712 100%); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px 22px; width: 90%; max-width: 360px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); transform: scale(0.95); transition: transform 0.3s ease; }
-body.light-mode .welcome-content { background: #ffffff; }
-.welcome-modal.show .welcome-content { transform: scale(1); }
-.welcome-icon-wrap { width: 64px; height: 64px; background: rgba(0, 136, 204, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; }
+/* DÜŞME ANİMASYONLU MODAL */
+.welcome-modal, .theme-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(10px); z-index: 999999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+.welcome-modal.show, .theme-modal.active { display: flex; opacity: 1; }
 
-.welcome-icon { font-size: 2rem; color: #0088cc; animation: telegramBlink 3s ease-in-out infinite; }
-@keyframes telegramBlink {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(0,136,204,0)); }
-  10% { transform: scale(1.15); filter: drop-shadow(0 0 8px rgba(0,136,204,0.6)); }
-  15% { transform: scale(0.95); }
-  20% { transform: scale(1.05); }
-  25% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0,136,204,0.2)); }
+.welcome-content { 
+    background: linear-gradient(160deg, #0f172a 0%, #030712 100%); 
+    border: 1px solid var(--border-color); 
+    border-radius: 24px; 
+    padding: 30px 22px; 
+    width: 90%; 
+    max-width: 360px; 
+    text-align: center; 
+    position: relative; 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-80px) scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.welcome-modal.show .welcome-content {
+    transform: translateY(0) scale(1);
+    animation: modalDropIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes modalDropIn {
+    0% { transform: translateY(-120px) scale(0.8); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.theme-content { background: linear-gradient(160deg, #0f172a 0%, #030712 100%); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px 22px; width: 90%; max-width: 360px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); }
+body.light-mode .welcome-content, body.light-mode .theme-content { background: #ffffff; }
+
+.welcome-icon-wrap { 
+    width: 72px; 
+    height: 72px; 
+    background: rgba(0, 136, 204, 0.12); 
+    border: 1px solid rgba(0, 136, 204, 0.3);
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 auto 20px auto; 
+    box-shadow: 0 0 20px rgba(0, 136, 204, 0.2);
+}
+.welcome-icon { font-size: 2.2rem; color: #0088cc; }
+
+/* TELEGRAM MODAL LOGO ANIMASYONU */
+.welcome-icon i {
+    animation: telegramPulse 2s infinite ease-in-out;
+    display: inline-block;
+}
+
+@keyframes telegramPulse {
+    0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); }
+    50% { transform: scale(1.2) rotate(-8deg); filter: drop-shadow(0 0 12px rgba(0, 136, 204, 0.9)); }
+    100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); }
 }
 
 .welcome-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 4px; color: var(--text-main); text-transform: uppercase; }
 .welcome-subtitle { font-size: 0.73rem; color: #0088cc; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
 .welcome-text { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
-.welcome-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0088cc; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: 100%; text-transform: uppercase; transition: background 0.2s; }
-.welcome-btn:hover { background: #0077b3; }
-.welcome-close { position: absolute; top: 15px; right: 15px; font-size: 1rem; color: var(--text-muted); cursor: pointer; opacity: 0.6; }
+.welcome-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0088cc; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: 100%; text-transform: uppercase; }
+.welcome-close, .modal-close { position: absolute; top: 15px; right: 15px; font-size: 1.1rem; color: var(--text-muted); cursor: pointer; }
 
-/* THEME MODAL */
-.theme-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(2, 4, 8, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 10000; align-items: center; justify-content: center; transition: all 0.3s ease; }
-.theme-modal.active { display: flex; }
-.theme-content { 
-    background: linear-gradient(165deg, rgba(15, 23, 42, 0.95) 0%, rgba(6, 11, 25, 0.98) 100%); 
-    border: 1px solid rgba(255, 255, 255, 0.1); 
-    border-radius: 28px; 
-    padding: 25px 22px; 
-    width: 92%; 
-    max-width: 360px; 
-    text-align: center; 
-    position: relative; 
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.1);
-    transform: translateY(20px);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-body.light-mode .theme-content {
-    background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
-    border-color: rgba(0,0,0,0.08);
-    box-shadow: 0 30px 60px rgba(15, 23, 42, 0.15);
-}
-.theme-modal.active .theme-content { transform: translateY(0); }
-.modal-close { position: absolute; top: 18px; right: 18px; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s, transform 0.2s; }
-.modal-close:hover { color: var(--live-red); transform: rotate(90deg); }
-
-.theme-title { font-size: 0.78rem; font-weight: 800; margin-bottom: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; gap: 6px; }
-body.light-mode .theme-title { color: #0f172a; }
-
-.mode-toggle-section { border-bottom: 1px solid var(--border-color); padding-bottom: 18px; margin-bottom: 18px; display: flex; gap: 12px; justify-content: center; }
-.mode-btn { 
-    flex: 1;
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px solid var(--border-color); 
-    color: var(--text-main); 
-    padding: 10px 14px; 
-    font-size: 0.85rem; 
-    font-weight: 700; 
-    border-radius: 14px; 
-    cursor: pointer; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    gap: 8px; 
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
-}
-.mode-btn:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
-.mode-btn.active { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); box-shadow: 0 4px 12px rgba(255,255,255,0.15); }
-body.light-mode .mode-btn.active { box-shadow: 0 4px 12px rgba(15,23,42,0.15); }
-
+.theme-title { font-size: 0.78rem; font-weight: 800; margin-bottom: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+.mode-toggle-section { border-bottom: 1px solid var(--border-color); padding-bottom: 18px; margin-bottom: 18px; display: flex; gap: 12px; }
+.mode-btn { flex: 1; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); color: var(--text-main); padding: 10px; font-size: 0.85rem; font-weight: 700; border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.mode-btn.active { background: var(--text-main); color: var(--bg-main); }
 .theme-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.t-card { 
-    background: rgba(255, 255, 255, 0.02); 
-    padding: 14px 12px; 
-    border-radius: 16px; 
-    cursor: pointer; 
-    font-weight: 700; 
-    font-size: 0.85rem; 
-    border: 1px solid var(--border-color); 
-    color: var(--text-main); 
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-    overflow: hidden;
-}
-.t-card:hover { border-color: rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.04); transform: translateY(-2px); }
-.t-card.active { 
-    border-color: var(--accent); 
-    background: rgba(255, 255, 255, 0.05); 
-    box-shadow: 0 0 15px var(--accent-glow), inset 0 0 8px var(--accent-glow);
-}
-body.light-mode .t-card { background: #f8fafc; }
-body.light-mode .t-card:hover { background: #f1f5f9; }
-body.light-mode .t-card.active { border-color: #facc15; background: rgba(250, 204, 21, 0.05); box-shadow: 0 4px 12px rgba(250,204,21,0.1); }
+.t-card { background: rgba(255, 255, 255, 0.02); padding: 14px 12px; border-radius: 16px; cursor: pointer; font-weight: 700; font-size: 0.85rem; border: 1px solid var(--border-color); color: var(--text-main); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.t-card.active { border-color: var(--accent); background: rgba(255, 255, 255, 0.05); }
 
-.t-card i { font-size: 1.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); transition: transform 0.2s; }
-.t-card:hover i { transform: scale(1.1); }
-
-.favorites-bar { display: none; background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 14px; padding: 10px 14px; margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
+.favorites-bar { display: none; background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--glass-border); border-radius: 14px; padding: 10px 14px; margin-bottom: 16px; overflow-x: auto; }
 .favorites-bar.visible { display: block; }
 .fav-bar-inner { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
 .fav-bar-title { font-size: 0.75rem; font-weight: 800; color: var(--accent); text-transform: uppercase; }
 #favChips { display: flex; gap: 8px; }
 .fav-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); border-radius: 10px; padding: 5px 10px; font-size: 0.8rem; font-weight: 700; cursor: pointer; color: var(--text-main); }
 .fav-remove { color: var(--text-muted); font-size: 0.75rem; margin-left: 4px; }
-.fav-remove:hover { color: var(--live-red); }
 
 .search-row { display: flex; gap: 10px; margin-bottom: 16px; width: 100%; align-items: center; }
 .search-bar { flex: 1; position: relative; }
-.search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 1rem; }
-.search-bar input { width: 100%; padding: 12px 14px 12px 42px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; color: var(--text-main); outline: none; font-size: 0.88rem; font-weight: 600; transition: border-color 0.2s; }
-.search-bar input:focus { border-color: var(--accent); }
+.search-bar i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+.search-bar input { width: 100%; padding: 12px 14px 12px 42px; background: var(--input-bg); border: 1px solid var(--border-color); border-radius: 14px; color: var(--text-main); outline: none; font-size: 0.88rem; font-weight: 600; }
 
-.chat-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 0 16px; height: 44px; border-radius: 14px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+.chat-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main); padding: 0 16px; height: 44px; border-radius: 14px; cursor: pointer; font-size: 1.1rem; flex-shrink: 0; }
 .chat-btn.active-chat { background: var(--accent) !important; color: #000 !important; border-color: var(--accent) !important; }
 
-.chat-wrapper { display: none; margin-bottom: 20px; width: 100%; opacity: 0; transform: translateY(-10px); transition: all 0.3s ease; }
-.chat-wrapper.show-chat { display: block; opacity: 1; transform: translateY(0); }
+.chat-wrapper { display: none; margin-bottom: 20px; width: 100%; }
+.chat-wrapper.show-chat { display: block; }
 .chat-container { width: 100%; background: #070b12; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); padding: 4px; }
 .cbox-iframe { width: 100%; height: 350px; background: #070b12; border: none; display: block; border-radius: 12px; }
 
-/* REHBER & MAÇ KARTLARI */
 .match-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
-.match-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; cursor: pointer; position: relative; width: 100%; overflow: hidden; transition: all 0.25s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.15); animation: cardEntrance 0.4s ease both; }
-@keyframes cardEntrance { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
-.match-card:hover { transform: translateY(-2px); border-color: rgba(250, 204, 21, 0.3); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.match-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; cursor: pointer; position: relative; width: 100%; overflow: hidden; }
 .match-card.active { background: var(--card-active-bg); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
-
-.match-card-active-bg { 
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center; 
-    padding: 12px 10px; 
-    width: 100%; 
-    gap: 8px; 
-    position: relative; 
-} 
-
-.section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; z-index: 5; letter-spacing: 0.3px; }
+.match-card-active-bg { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 12px 10px; width: 100%; gap: 8px; position: relative; } 
+.section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; }
 .hidden-card { display: none !important; }
 
 .match-left { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 4px; flex: 1; }
 .live-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; gap: 1px; flex-shrink: 0; width: 52px; }
 .live-badge .live-text { display: flex; align-items: center; gap: 4px; color: var(--live-red); position: relative; padding-left: 12px; font-weight: 900; }
 .live-badge .live-text::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 6px; height: 6px; background-color: var(--live-red); border-radius: 50%; animation: liveDotPulse 1.5s infinite ease-in-out; }
-
+.live-badge.not-live .live-text { color: var(--text-muted); }
+.live-badge.not-live .live-text::before { background-color: var(--text-muted); animation: none; }
 @keyframes liveDotPulse { 0% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } 50% { transform: translateY(-50%) scale(1.2); opacity: 1; } 100% { transform: translateY(-50%) scale(0.8); opacity: 0.5; } }
 .live-badge .match-time-sub { font-size: 0.62rem; color: var(--text-muted); font-weight: 700; padding-left: 12px; }
 
 .match-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow: hidden; flex: 1; }
+.league-name { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; font-weight: 800; white-space: nowrap; letter-spacing: 0.3px; opacity: 0.9; }
+.teams { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.2px; min-width: 0; color: var(--text-main); width: 100%; }
+.scroll-container { flex: 1; overflow: hidden; white-space: nowrap; position: relative; display: flex; }
+.scroll-text { display: inline-block; color: var(--text-main); will-change: transform; transform: translate3d(0, 0, 0); }
+.marquee-active { display: inline-block; padding-left: 100%; animation: textMarqueeSmooth 10s linear infinite; } 
+@keyframes textMarqueeSmooth { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
 
-.league-name { 
-    font-size: 0.65rem; 
-    color: var(--text-muted); 
-    text-transform: uppercase; 
-    font-weight: 700; 
-    white-space: nowrap; 
-    letter-spacing: 0.3px; 
-    opacity: 0.8; 
-}
-
-.teams { 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-weight: 700; 
-    font-size: 0.78rem; 
-    letter-spacing: 0.2px; 
-    min-width: 0; 
-    color: var(--text-main); 
-    width: 100%;
-}
-
-.scroll-container { 
-    flex: 1; 
-    overflow: hidden; 
-    white-space: nowrap; 
-    position: relative;
-    display: flex;
-}
-
-/* PÜRÜZSÜZ AKAN TEMİZ KAYAN YAZI */
-.scroll-text { 
-    display: inline-block; 
-    color: var(--text-main); 
-    will-change: transform;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-.marquee-active { 
-    display: inline-block;
-    padding-left: 100%;
-    animation: textMarqueeSmooth 10s linear infinite; 
-} 
-
-@keyframes textMarqueeSmooth { 
-    0% { transform: translate3d(0, 0, 0); } 
-    100% { transform: translate3d(-100%, 0, 0); } 
-}
-
-.team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); position: relative; }
-.match-card.active .team-avatar { color: var(--accent); border-color: var(--accent); background: rgba(255,255,255,0.06); }
+.team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); }
+.match-card.active .team-avatar { color: var(--accent); border-color: var(--accent); }
 
 .card-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.action-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.82rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; }
-.action-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(255, 255, 255, 0.06); }
+.action-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.82rem; cursor: pointer; border: 1px solid var(--border-color); }
 .action-btn.faved { color: var(--accent) !important; background: rgba(250, 204, 21, 0.08); border-color: var(--accent); }
-body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rgba(255,255,255,1); border-color: #fff; }
-
-.play-icon-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem; border: 1px solid var(--border-color); transition: all 0.2s; }
-.match-card:hover .play-icon-btn { color: var(--accent); border-color: var(--accent); }
+.play-icon-btn { width: 32px; height: 32px; background: rgba(255, 255, 255, 0.02); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.8rem; border: 1px solid var(--border-color); }
 .match-card.active .play-icon-btn { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 800; }
-.match-card.active .play-icon-btn i { color: #000 !important; }
 
-.site-footer { text-align: center; padding: 24px 15px; margin-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; line-height: 1.6; }
-.site-footer .footer-brand { font-weight: 800; color: var(--text-main); letter-spacing: 0.2px; }
+.site-footer { text-align: center; padding: 24px 15px; margin-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); line-height: 1.6; }
 .site-footer .footer-brand span { color: var(--accent); font-weight: 900; }
 
-.bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--glass-border); display: flex; justify-content: space-around; padding: 14px 0; z-index: 999; }
-.nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: color 0.2s; }
-.nav-item i { font-size: 1.2rem; }
-.nav-item:hover { color: var(--text-main); }
+/* ALT GEZİNME BARININ DÜZELTİLMİŞ HALİ */
+.bottom-nav { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    background: var(--glass-bg); 
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border); 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    padding: 10px 8px; 
+    z-index: 999; 
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+}
+.nav-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    gap: 5px; 
+    color: var(--text-muted); 
+    font-size: 0.72rem; 
+    font-weight: 700; 
+    cursor: pointer; 
+    flex: 1;
+    text-align: center;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+}
+.nav-item i {
+    font-size: 1.1rem;
+}
 .nav-item.active { color: var(--accent); }
 
 .custom-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-main); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10000; display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; }
 .custom-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-@media screen and (max-width: 480px) {
-  .bottom-nav { padding: 8px 0; }
-  .nav-item { font-size: 0.62rem !important; gap: 2px !important; padding: 0 3px !important; text-align: center; }
-  .nav-item i { font-size: 1.05rem !important; }
-  #nav-onemli { max-width: 42% !important; white-space: normal !important; line-height: 1.15 !important; }
+@media screen and (max-width: 580px) {
+  .nav-item { font-size: 0.65rem; }
+  .nav-item i { font-size: 1rem; }
 }
 </style>
 </head>
 <body>
 
+<div class="offline-screen" id="offlineScreen">
+  <i class="fa-solid fa-wifi-slash offline-icon"></i>
+  <h2 style="font-size: 1.2rem; font-weight: 900; margin-bottom: 6px;">BAĞLANTI KESİLDİ</h2>
+  <p style="font-size: 0.8rem; color: var(--text-muted);">İnternet bağlantınız koptu. Bağlantı sağlandığında sayfa otomatik yenilenecektir.</p>
+</div>
+
 <div class="custom-toast" id="siteToast"><i class="fa-solid fa-circle-check" id="toastIcon" style="color:var(--accent);"></i> <span id="toastMsg">İşlem Başarılı!</span></div>
 
+<!-- TELEGRAM HOŞ GELDİN MODALI -->
 <div class="welcome-modal" id="welcomeModal">
   <div class="welcome-content">
     <i class="fa-solid fa-xmark welcome-close" onclick="closeWelcome()"></i>
@@ -495,7 +525,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
     <h2 class="welcome-title">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></h2>
     <div class="welcome-subtitle">Resmî Duyuru Kanalı</div>
     <p class="welcome-text">Canlı yayın linkleri, anlık maç bildirimleri ve kesintisiz adres güncellemeleri için topluluğumuza katılın.</p>
-    <a href="https://t.me/sezocannsports" target="_blank" class="welcome-btn" onclick="closeWelcome()">
+    <a href="https://t.me/sezocannsports" target="_blank" rel="noopener noreferrer" class="welcome-btn" onclick="closeWelcome()">
       <i class="fa-brands fa-telegram"></i> KANALA KATIL
     </a>
   </div>
@@ -506,25 +536,37 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
     SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span>
   </div>
   <div class="header-right">
+      <button class="action-btn-top" id="theaterBtn" onclick="toggleTheaterMode()" title="Sinema Modu (T)"><i class="fa-solid fa-expand"></i></button>
       <button class="action-btn-top" id="pushBellBtn" onclick="requestPushNotification()"><i class="fa-solid fa-bell"></i></button>
       <button class="action-btn-top" onclick="shareSite()"><i class="fa-solid fa-share-nodes"></i></button>
       <button class="action-btn-top" onclick="document.getElementById('themeModal').classList.add('active')"><i class="fa-solid fa-shirt"></i></button>
-      <button class="action-btn-top" onclick="gitInstagram()" title="Instagram"><i class="fa-brands fa-instagram"></i></button>
-      <button class="action-btn-top" onclick="gitTelegram()" title="Telegram"><i class="fa-brands fa-telegram"></i></button>
+      <button class="action-btn-top instagram-btn-anim" onclick="gitInstagram()" title="Instagram"><i class="fa-brands fa-instagram"></i></button>
+      <button class="action-btn-top telegram-btn-anim" onclick="gitTelegram()" title="Telegram"><i class="fa-brands fa-telegram"></i></button>
   </div>
 </header>
 
+<!-- SIFIR ATLAMA - TAM KESİNTİSİZ 60 FPS TICKER DÖNGÜSÜ -->
 <div class="ticker-container">
   <div class="ticker-wrap" id="mainTickerWrap">
     <div class="ticker-group">
-      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ VE DONMASIZ YAYIN KEYFİ BAŞLADI!</span>
-      <span class="ticker-item"><i class="fa-solid fa-camera"></i> ANLIK SÜRPRİZ LİNKLER İÇİN <span class="text-insta">INSTAGRAM'DAN BİZİ TAKİP ET! (@sezaicann1)</span></span>
-      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> ANLIK BİLDİRİMLER İÇİN <span class="text-tele">TELEGRAM KANALIMIZA KATIL! (t.me/sezocannsports)</span></span>
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
     </div>
     <div class="ticker-group">
-      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ VE DONMASIZ YAYIN KEYFİ BAŞLADI!</span>
-      <span class="ticker-item"><i class="fa-solid fa-camera"></i> ANLIK SÜRPRİZ LİNKLER İÇİN <span class="text-insta">INSTAGRAM'DAN BİZİ TAKİP ET! (@sezaicann1)</span></span>
-      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> ANLIK BİRAZDAN BAŞLAYACAK BİLDİRİMLER İÇİN KANALIMIZA KATIL!</span>
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
+    </div>
+    <div class="ticker-group">
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
+    </div>
+    <div class="ticker-group">
+      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
+      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
+      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
     </div>
   </div>
 </div>
@@ -552,6 +594,15 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
   <div class="layout-left">
     <div class="player-container" id="mainPlayerSection">
       
+      <!-- HAZIRLANIYOR EKRANI & LOGO -->
+      <div class="stream-loader-overlay" id="streamLoader">
+          <div class="loader-content">
+              <div class="loader-spinner"></div>
+              <div class="loader-text">Yayın Hazırlanıyor...</div>
+          </div>
+          <div class="loader-logo">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></div>
+      </div>
+
       <div class="select-match-placeholder" id="selectMatchPlaceholder">
            <div class="sm-logo-glow">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></div>
            <div class="sm-notice-box">
@@ -589,15 +640,7 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 
     <div class="chat-wrapper" id="chatWrapper">
         <div class="chat-container">
-          <iframe src="https://my.cbox.ws/SEZOCANNSPORTSHD" 
-                  class="cbox-iframe"
-                  allowtransparency="yes" 
-                  allow="autoplay" 
-                  frameborder="0" 
-                  marginheight="0" 
-                  marginwidth="0" 
-                  scrolling="auto">
-          </iframe>
+          <iframe src="https://my.cbox.ws/SEZOCANNSPORTSHD" class="cbox-iframe" allowtransparency="yes" allow="autoplay" frameborder="0" scrolling="auto"></iframe>
         </div>
     </div>
 
@@ -611,14 +654,56 @@ body.bjk-theme-active .action-btn.faved { color: #fff !important; background: rg
 </main>
 
 <div class="bottom-nav">
-  <div class="nav-item active" id="nav-onemli" onclick="switchCategory('onemli', this)"><i class="fa-solid fa-star"></i>Günün Önemli Karşılaşmaları</div>
-  <div class="nav-item" id="nav-spor" onclick="switchCategory('spor', this)"><i class="fa-solid fa-tv"></i>7/24 Kanallar</div>
-  <div class="nav-item" id="nav-favoriler" onclick="switchCategory('favoriler', this)"><i class="fa-solid fa-heart"></i>Favoriler</div>
+  <div class="nav-item active" id="nav-onemli" onclick="switchCategory('onemli', this)"><i class="fa-solid fa-star"></i><span>Günün Maçları</span></div>
+  <div class="nav-item" id="nav-spor" onclick="switchCategory('spor', this)"><i class="fa-solid fa-tv"></i><span>7/24 Kanallar</span></div>
+  <div class="nav-item" id="nav-favoriler" onclick="switchCategory('favoriler', this)"><i class="fa-solid fa-heart"></i><span>Favoriler</span></div>
 </div>
 
 <audio id="beepAudio" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" preload="auto"></audio>
 
 <script type="text/javascript">
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    console.warn("Sistem Uyarısı:", msg);
+    return true; 
+};
+window.onunhandledrejection = function(e) {
+    if (e.reason && (e.reason.name === 'AbortError' || e.reason.name === 'NotAllowedError')) {
+        e.preventDefault();
+        return;
+    }
+    console.warn("Söz Hatası Yakalandı:", e.reason);
+    e.preventDefault();
+};
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        const swCode = `
+            self.addEventListener('install', e => self.skipWaiting());
+            self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
+        `;
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+    });
+}
+
+window.addEventListener('online', () => {
+    const offlineScreen = document.getElementById('offlineScreen');
+    if (offlineScreen) offlineScreen.classList.remove('show');
+    showToast("İnternet bağlantısı yeniden sağlandı!", "fa-wifi");
+});
+window.addEventListener('offline', () => {
+    const offlineScreen = document.getElementById('offlineScreen');
+    if (offlineScreen) offlineScreen.classList.add('show');
+});
+
+function checkNetworkSpeed() {
+    if (navigator.connection && navigator.connection.downlink) {
+        if (navigator.connection.downlink < 1.5) {
+            showToast("Bağlantınız yavaş, donma yaşanabilir.", "fa-triangle-exclamation");
+        }
+    }
+}
+
 const themes = {
     default: { dark: '#facc15', dark_d: '#ca8a04', bg: '#060913', card: '#0b1120', glow: 'rgba(250, 204, 21, 0.15)' },
     gs: { dark: '#facc15', dark_d: '#991b1b', bg: '#1a0303', card: '#260606', glow: 'rgba(250, 204, 21, 0.12)' },
@@ -632,10 +717,34 @@ const SafeStorage = {
     set(key, value) { try { localStorage.setItem(key, value); } catch(e) {} }
 };
 
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function trNormalize(text) {
     if (!text) return '';
     return text.toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
         .replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ş/g, 's').replace(/ç/g, 'c').replace(/ö/g, 'o').replace(/ü/g, 'u');
+}
+
+function fallbackCopyTextToClipboard(text, successMsg) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) showToast(successMsg);
+        else showToast("Kopyalama başarısız!", "fa-xmark");
+    } catch (err) {
+        showToast("Kopyalama başarısız!", "fa-xmark");
+    }
+    document.body.removeChild(textArea);
 }
 
 const DOM = {
@@ -648,6 +757,7 @@ const DOM = {
     chatToggleBtn: document.getElementById('chatToggleBtn'),
     searchInput: document.getElementById('searchInput'),
     pushBellBtn: document.getElementById('pushBellBtn'),
+    theaterBtn: document.getElementById('theaterBtn'),
     themeModal: document.getElementById('themeModal'),
     darkModeBtn: document.getElementById('darkModeBtn'),
     lightModeBtn: document.getElementById('lightModeBtn'),
@@ -656,19 +766,43 @@ const DOM = {
     toastIcon: document.getElementById('toastIcon'),
     placeholder: document.getElementById('selectMatchPlaceholder'),
     beepAudio: document.getElementById('beepAudio'),
-    playerSection: document.getElementById('mainPlayerSection')
+    playerSection: document.getElementById('mainPlayerSection'),
+    streamLoader: document.getElementById('streamLoader')
 };
 
 const streamsData = {
     onemli: {
-        items: []
+        items: [
+            { 
+                id: "gs_venezia", 
+                isLive: true, 
+                startTime: "21:00", 
+                statusText: "CANLI", 
+                league: "SEZOCANN SPORTS ʜᴅ", 
+                teams: "Galatasaray vs Venezia", 
+                url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", 
+                customBadge: "HAZIRLIK MAÇI" 
+            },
+            { 
+                id: "gornik_fb", 
+                isLive: true, 
+                startTime: "19:00", 
+                statusText: "CANLI", 
+                league: "SEZOCANN SPORTS ʜᴅ", 
+                teams: "Gornik Zabrze vs Fenerbahçe", 
+                url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", 
+                customBadge: "UCL ÖN ELEME" 
+            }
+        ]
     },
     spor: {
         items: [
-            { id: "trt_1_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
-            { id: "trt_spor_hd", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "TRT", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
-            { id: "s_sport_1", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "S SPORT", teams: "S SPORT 1", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8" },
-            { id: "s_sport_2", isLive: true, startTime: "7/24", statusText: "AKTİF", league: "S SPORT", teams: "S SPORT 2", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport2/tracks-v1a1/mono.m3u8" }
+            { id: "trt_1_hd", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "TRT 1 HD", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8" },
+            { id: "trt_spor_hd", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "TRT SPOR HD", url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8" },
+            { id: "a_spor_hd", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "A SPOR HD", url: "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/aspor/aspor.m3u8" },
+            { id: "tv100_hd", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "TV 100 HD", url: "https://ensonhaber-live.ercdn.net/tv100/tv100.m3u8" },
+            { id: "s_sport_1", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "S SPORT 1", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8" },
+            { id: "s_sport_2", isLive: true, startTime: "7/24", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "S SPORT 2", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport2/tracks-v1a1/mono.m3u8" }
         ]
     }
 };
@@ -681,6 +815,16 @@ function showToast(msg, iconClass = "fa-circle-check") {
     if(toastTimer) clearTimeout(toastTimer);
     DOM.toastIcon.className = `fa-solid ${iconClass}`; DOM.toastMsg.innerText = msg;
     DOM.toast.classList.add('show'); toastTimer = setTimeout(() => { DOM.toast.classList.remove('show'); }, 2500);
+}
+
+function toggleTheaterMode() {
+    document.body.classList.toggle('theater-mode');
+    const isTheater = document.body.classList.contains('theater-mode');
+    if(DOM.theaterBtn) {
+        DOM.theaterBtn.classList.toggle('theater-active', isTheater);
+        DOM.theaterBtn.innerHTML = isTheater ? '<i class="fa-solid fa-compress"></i>' : '<i class="fa-solid fa-expand"></i>';
+    }
+    showToast(isTheater ? "Sinema Modu Açıldı (T)" : "Sinema Modu Kapatıldı", "fa-expand");
 }
 
 function toggleLightDarkMode(mode) {
@@ -702,75 +846,161 @@ function setTheme(key, el) { applyTheme(key); document.querySelectorAll('.t-card
 function gitInstagram() { window.open("https://www.instagram.com/sezaicann1", '_blank'); }
 function gitTelegram() { window.open("https://t.me/sezocannsports", '_blank'); }
 
-function shareSite() { try { navigator.clipboard.writeText(window.location.href); showToast("Yayın linki başarıyla kopyalandı! 🚀"); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', url: window.location.href }); } }
-function shareMatch(t) { try { navigator.clipboard.writeText(window.location.href); showToast(`${t} kopyalandı! 🚀`); } catch(e) { if (navigator.share) navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canlı İzle!` }); } }
+function shareSite() { 
+    if (navigator.share) {
+        navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', url: window.location.href }).catch(() => {});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => showToast("Yayın linki başarıyla kopyalandı! 🚀"))
+            .catch(() => fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀"));
+    } else {
+        fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀");
+    }
+}
+
+function shareMatch(t) { 
+    if (navigator.share) {
+        navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canlı İzle!`, url: window.location.href }).catch(() => {});
+    } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href)
+            .then(() => showToast(`${t} kopyalandı! 🚀`))
+            .catch(() => fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`));
+    } else {
+        fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`);
+    }
+}
 
 function retryCurrentStream() { 
     const retryIcon = document.getElementById('retryIcon');
     if(retryIcon) { retryIcon.classList.add('fa-spin'); setTimeout(() => { retryIcon.classList.remove('fa-spin'); }, 1000); }
+    if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
     if(currentUrl) loadM3u8(currentUrl, true); 
 }
 
 function triggerStreamError() { 
+    if(DOM.placeholder && DOM.placeholder.style.display !== 'none') return;
+    if(DOM.streamLoader) DOM.streamLoader.style.display = 'none';
     if(isStreamPlaying && DOM.playerError) {
         DOM.playerError.style.display = 'flex'; 
         if(!reconnectInterval) {
             reconnectInterval = setInterval(() => {
-                if(currentUrl && isStreamPlaying) {
-                    retryCurrentStream();
-                }
+                if(currentUrl && isStreamPlaying) { retryCurrentStream(); }
             }, 5000);
         }
     }
 }
 
 function loadM3u8(url, autoPlayCheck = false) {
+    if (typeof window.videojs === 'undefined') {
+        showToast("Oynatıcı kütüphanesi yüklenemedi!", "fa-triangle-exclamation");
+        triggerStreamError();
+        return;
+    }
+
+    checkNetworkSpeed();
     currentUrl = url; 
+    
+    if(DOM.streamLoader) {
+        DOM.streamLoader.style.display = 'flex';
+        setTimeout(() => { if(DOM.streamLoader) DOM.streamLoader.style.display = 'none'; }, 1200);
+    }
+    
     if(DOM.playerError) DOM.playerError.style.display = 'none'; 
     if(autoPlayCheck && DOM.placeholder) { DOM.placeholder.style.display = 'none'; }
-    
     if (autoPlayCheck) { isStreamPlaying = true; }
-    if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
-
-    const cacheBuster = url.includes('?') ? '&' : '?';
-    const finalStreamUrl = url + cacheBuster + "szc_live=" + new Date().getTime();
 
     if (!vjsPlayer) {
-        vjsPlayer = videojs('sezocannVideo', {
-            autoplay: autoPlayCheck,
-            preload: 'auto',
-            fluid: true,
-            responsive: true,
-            controls: true,
-            playsinline: true,
-            html5: { hls: { overrideNative: true, enableLowInitialPlaylist: true, smoothQualityChange: true, handleManifestRedirects: true, bandwidth: 5000000, lowLatencyMode: true } },
-            liveui: true,
-            liveTracker: { trackingThreshold: 0, liveTolerance: 3 }
-        });
-
-        vjsPlayer.on('error', function() { triggerStreamError(); });
-        vjsPlayer.on('playing', function() { 
-            if(DOM.playerError) DOM.playerError.style.display = 'none';
-            if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
-        });
-
-        const controlBar = vjsPlayer.getChild('controlBar');
-        if (controlBar) {
-            const beepButton = controlBar.addChild('button', {
-                className: 'vjs-beep-button vjs-control vjs-button',
-                innerHTML: '<i class="fa-solid fa-volume-high"></i>'
+        try {
+            vjsPlayer = videojs('sezocannVideo', {
+                autoplay: autoPlayCheck,
+                preload: 'auto',
+                fluid: true,
+                responsive: true,
+                controls: true,
+                playsinline: true,
+                html5: { 
+                    vhs: { 
+                        overrideNative: false, 
+                        enableLowInitialPlaylist: true, 
+                        smoothQualityChange: true, 
+                        handleManifestRedirects: true,
+                        maxBufferLength: 15
+                    },
+                    nativeAudioTracks: false,
+                    nativeVideoTracks: false
+                },
+                liveui: true
             });
-            beepButton.el().onclick = function(e) {
-                e.stopPropagation();
-                if(DOM.beepAudio) { DOM.beepAudio.currentTime = 0; DOM.beepAudio.play(); showToast("Sinyal test kanalları aktif! 🔔", "fa-volume-high"); }
-            };
+
+            vjsPlayer.on('error', function() { triggerStreamError(); });
+            vjsPlayer.on('playing', function() { 
+                if(DOM.playerError) DOM.playerError.style.display = 'none';
+                if(DOM.streamLoader) DOM.streamLoader.style.display = 'none';
+                if (reconnectInterval) { clearInterval(reconnectInterval); reconnectInterval = null; }
+            });
+            vjsPlayer.on('loadstart', function() {
+                if(DOM.playerError) DOM.playerError.style.display = 'none';
+            });
+
+            const controlBar = vjsPlayer.getChild('controlBar');
+            if (controlBar) {
+                const beepButton = controlBar.addChild('button', {
+                    className: 'vjs-custom-icon-btn vjs-control vjs-button',
+                    innerHTML: '<i class="fa-solid fa-volume-high"></i>'
+                });
+                beepButton.el().onclick = function(e) {
+                    e.stopPropagation();
+                    if(DOM.beepAudio) { 
+                        DOM.beepAudio.currentTime = 0; 
+                        DOM.beepAudio.play().then(() => {
+                            showToast("Sinyal test kanalları aktif! 🔔", "fa-volume-high");
+                        }).catch(() => {
+                            showToast("Ses oynatılamadı", "fa-volume-xmark");
+                        });
+                    }
+                };
+
+                if ('pictureInPictureEnabled' in document) {
+                    const pipBtn = controlBar.addChild('button', {
+                        className: 'vjs-custom-icon-btn vjs-control vjs-button',
+                        innerHTML: '<i class="fa-solid fa-clone" title="Yüzen Pencere (PiP)"></i>'
+                    });
+                    pipBtn.el().onclick = async function(e) {
+                        e.stopPropagation();
+                        try {
+                            const videoEl = document.querySelector('#sezocannVideo_html5_api');
+                            if (document.pictureInPictureElement) {
+                                await document.exitPictureInPicture();
+                            } else if (videoEl && videoEl.readyState >= 1) {
+                                await videoEl.requestPictureInPicture();
+                            } else {
+                                showToast("Video henüz yüklenmedi", "fa-circle-exclamation");
+                            }
+                        } catch (err) {
+                            showToast("PiP başlatılamadı", "fa-circle-xmark");
+                        }
+                    };
+                }
+            }
+        } catch(e) {
+            triggerStreamError();
+            return;
         }
     }
 
     try {
-        vjsPlayer.src({ src: finalStreamUrl, type: 'application/x-mpegURL' });
+        vjsPlayer.src({ src: url, type: 'application/x-mpegURL' });
         if(autoPlayCheck) {
-            vjsPlayer.play().then(() => { vjsPlayer.muted(false); }).catch(() => { vjsPlayer.muted(true); vjsPlayer.play(); });
+            vjsPlayer.muted(true);
+            var playPromise = vjsPlayer.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => { 
+                    vjsPlayer.muted(false); 
+                }).catch(() => { 
+                    vjsPlayer.muted(true); 
+                    vjsPlayer.play().catch(()=>{}); 
+                });
+            }
         }
     } catch(err) { triggerStreamError(); }
 }
@@ -792,11 +1022,9 @@ function toggleChat() {
   else { DOM.chatWrapper.classList.add('show-chat'); DOM.chatToggleBtn.classList.add('active-chat'); } 
 }
 
-function playStreamDirectly(item, cardEl) { 
+function playStreamDirectly(item) { 
     loadM3u8(item.url, true); 
-    if(DOM.playerSection) {
-        DOM.playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if(DOM.playerSection) { DOM.playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 }
 function getFavorites() { try { return JSON.parse(SafeStorage.get('sezocann_favorites', '[]')) || []; } catch(e) { return []; } }
 function saveFavorites(f) { SafeStorage.set('sezocann_favorites', JSON.stringify(f)); }
@@ -806,6 +1034,7 @@ function toggleFavorite(item) {
     if (idx === -1) { f.push(item); showToast("Favorilere eklendi!", "fa-heart"); } 
     else { f.splice(idx, 1); showToast("Favorilerden çıkarıldı!", "fa-heart-crack"); }
     saveFavorites(f); renderFavoritesBar(); renderCategoryList(currentCategory);
+    if(DOM.searchInput && DOM.searchInput.value) filterMatches();
 }
 
 function renderFavoritesBar() {
@@ -813,9 +1042,9 @@ function renderFavoritesBar() {
     DOM.favoritesBar.classList.add('visible');
     f.forEach(fav => {
         const chip = document.createElement('span'); chip.className = 'fav-chip';
-        chip.innerHTML = `<i class="fa-solid fa-tv"></i><span>${fav.teams}</span><i class="fa-solid fa-xmark fav-remove"></i>`;
+        chip.innerHTML = `<i class="fa-solid fa-tv"></i><span>${escapeHTML(fav.teams)}</span><i class="fa-solid fa-xmark fav-remove"></i>`;
         chip.querySelector('span').onclick = (e) => { e.stopPropagation(); playStreamDirectly(fav); };
-        chip.querySelector('.fav-remove').onclick = (e) => { e.stopPropagation(); saveFavorites(getFavorites().filter(x => x.id !== fav.id)); renderFavoritesBar(); renderCategoryList(currentCategory); };
+        chip.querySelector('.fav-remove').onclick = (e) => { e.stopPropagation(); saveFavorites(getFavorites().filter(x => x.id !== fav.id)); renderFavoritesBar(); renderCategoryList(currentCategory); if(DOM.searchInput && DOM.searchInput.value) filterMatches(); };
         DOM.favChips.appendChild(chip);
     });
 }
@@ -827,22 +1056,23 @@ function renderCategoryList(category) {
 
     items.forEach((item) => {
         const faved = getFavorites().some(x => x.id === item.id); const card = document.createElement('div'); card.className = `match-card`;
-        card.dataset.searchtext = trNormalize(item.teams + " " + item.league);
-        
-        card.innerHTML = (item.customBadge ? `<div class="section-badge">${item.customBadge}</div>` : '') + `
+        const leagueName = item.league || "SEZOCANN SPORTS ʜᴅ";
+        const statusLabel = item.statusText || (item.isLive ? "CANLI" : "YAYINDA");
+        const isLiveClass = item.isLive ? "" : "not-live";
+
+        card.dataset.searchtext = trNormalize(item.teams + " " + leagueName);
+        card.innerHTML = (item.customBadge ? `<div class="section-badge">${escapeHTML(item.customBadge)}</div>` : '') + `
             <div class="match-card-active-bg">
                 <div class="match-left">
-                  <div class="live-badge">
-                     <span class="live-text">Canlı</span>
-                     <span class="match-time-sub">${item.startTime}</span>
+                  <div class="live-badge ${isLiveClass}">
+                     <span class="live-text">${escapeHTML(statusLabel)}</span>
+                     <span class="match-time-sub">${escapeHTML(item.startTime)}</span>
                   </div>
                   <div class="match-info">
-                    <div class="league-name">${item.league}</div>
+                    <div class="league-name">${escapeHTML(leagueName)}</div>
                     <div class="teams">
-                        <div class="team-avatar">
-                           <i class="fa-solid fa-tv"></i>
-                        </div>
-                        <div class="scroll-container"><span class="scroll-text">${item.teams}</span></div>
+                        <div class="team-avatar"><i class="fa-solid fa-tv"></i></div>
+                        <div class="scroll-container"><span class="scroll-text">${escapeHTML(item.teams)}</span></div>
                     </div>
                   </div>
                 </div>
@@ -870,11 +1100,8 @@ function checkAndActivateMarquee() {
     setTimeout(() => {
         document.querySelectorAll('.scroll-container').forEach(c => {
             const txt = c.querySelector('.scroll-text'); if (!txt) return;
-            if (txt.offsetWidth > c.offsetWidth) { 
-                txt.classList.add('marquee-active'); 
-            } else { 
-                txt.classList.remove('marquee-active'); 
-            }
+            if (txt.offsetWidth > c.offsetWidth) { txt.classList.add('marquee-active'); } 
+            else { txt.classList.remove('marquee-active'); }
         });
     }, 300);
 }
@@ -888,109 +1115,45 @@ function switchCategory(cat, el) {
 function filterMatches() { const term = trNormalize(DOM.searchInput.value); document.querySelectorAll('.match-list .match-card').forEach(c => { if(c.dataset.searchtext.includes(term)) c.classList.remove('hidden-card'); else c.classList.add('hidden-card'); }); }
 function closeWelcome() { const m = document.getElementById('welcomeModal'); if (m) m.classList.remove('show'); }
 
-/* TÜRKİYE VE AVRUPA'NIN TÜM POPÜLER LİGLERİNİ OTOMATİK FİLTRELEYEN SİSTEM */
-async function fetchAutoMatches() {
-    try {
-        const localRes = await fetch('matches.json?v=' + new Date().getTime());
-        if (localRes.ok) {
-            const data = await localRes.json();
-            if (Array.isArray(data) && data.length > 0) {
-                streamsData.onemli.items = data;
-                return;
-            }
+function initKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        if (!vjsPlayer) return;
+
+        switch (e.key.toLowerCase()) {
+            case ' ':
+            case 'k': e.preventDefault(); vjsPlayer.paused() ? vjsPlayer.play().catch(()=>{}) : vjsPlayer.pause(); break;
+            case 'f': e.preventDefault(); vjsPlayer.isFullscreen() ? vjsPlayer.exitFullscreen() : vjsPlayer.requestFullscreen(); break;
+            case 'm': e.preventDefault(); vjsPlayer.muted(!vjsPlayer.muted()); break;
+            case 't': e.preventDefault(); toggleTheaterMode(); break;
+            case 'arrowright': e.preventDefault(); vjsPlayer.currentTime(vjsPlayer.currentTime() + 5); break;
+            case 'arrowleft': e.preventDefault(); vjsPlayer.currentTime(vjsPlayer.currentTime() - 5); break;
+            case 'arrowup': e.preventDefault(); vjsPlayer.volume(Math.min(1, vjsPlayer.volume() + 0.1)); break;
+            case 'arrowdown': e.preventDefault(); vjsPlayer.volume(Math.max(0, vjsPlayer.volume() - 0.1)); break;
         }
-    } catch(e) {}
-
-    try {
-        const now = new Date();
-        const dateStr = now.toISOString().split('T')[0];
-        const apiRes = await fetch(`https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=${dateStr}&s=Soccer`);
-        
-        if (apiRes.ok) {
-            const apiData = await apiRes.json();
-            if (apiData && apiData.events && apiData.events.length > 0) {
-                
-                // TÜRKİYE + AVRUPA'NIN TÜM POPÜLER BÜYÜK LİGLERİ VE KUPALARI
-                const allowedLeagues = [
-                    "SUPER LIG", "TURKISH SUPER LIG", "TFF 1", 
-                    "PREMIER LEAGUE", "ENGLISH PREMIER LEAGUE", 
-                    "SERIE A", "ITALIAN SERIE A",
-                    "LA LIGA", "SPANISH LA LIGA", "PRIMERA DIVISION",
-                    "BUNDESLIGA", "GERMAN BUNDESLIGA",
-                    "LIGUE 1", "FRENCH LIGUE 1",
-                    "EREDIVISIE", "DUTCH EREDIVISIE",
-                    "PRIMEIRA LIGA", "PORTUGUESE PRIMEIRA LIGA",
-                    "UEFA CHAMPIONS LEAGUE", "CHAMPIONS LEAGUE",
-                    "UEFA EUROPA LEAGUE", "EUROPA LEAGUE", 
-                    "UEFA CONFERENCE LEAGUE", "CONFERENCE LEAGUE"
-                ];
-
-                const filteredEvents = apiData.events.filter(evt => {
-                    if (!evt.strLeague) return false;
-                    const leagueUpper = evt.strLeague.toUpperCase();
-                    return allowedLeagues.some(allowed => leagueUpper.includes(allowed));
-                });
-
-                if (filteredEvents.length > 0) {
-                    streamsData.onemli.items = filteredEvents.map((evt, idx) => {
-                        const matchTime = evt.strTime ? evt.strTime.substring(0, 5) : "20:45";
-                        return {
-                            id: "auto_selected_event_" + idx,
-                            isLive: true,
-                            startTime: matchTime,
-                            statusText: "CANLI",
-                            league: evt.strLeague.toUpperCase(),
-                            teams: `${evt.strHomeTeam} - ${evt.strAwayTeam}`,
-                            url: "https://tv-trt1.medya.trt.com.tr/master.m3u8",
-                            customBadge: idx === 0 ? "GÜNÜN MAÇI" : "CANLI YAYIN"
-                        };
-                    });
-                    return;
-                }
-            }
-        }
-    } catch(err) {}
-
-    // Liglerde maç bulunamazsa yedek yayın
-    streamsData.onemli.items = [
-        { 
-            id: "default_top_match", 
-            isLive: true, 
-            startTime: "20:45", 
-            statusText: "CANLI", 
-            league: "AVRUPA KUPALARI / CANLI YAYIN", 
-            teams: "RAMS Başakşehir - Inter Turku", 
-            url: "https://tv-trt1.medya.trt.com.tr/master.m3u8", 
-            customBadge: "GÜNÜN MAÇI" 
-        }
-    ];
+    });
 }
 
-async function initApp() {
-    const yearEl = document.getElementById('currentYear');
-    if(yearEl) { yearEl.innerText = new Date().getFullYear(); }
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('currentYear').innerText = new Date().getFullYear();
+    
+    const savedDisplay = SafeStorage.get('sezocann_display_mode', 'dark');
+    toggleLightDarkMode(savedDisplay);
+    
+    const savedTheme = SafeStorage.get('sezocann_theme', 'default');
+    applyTheme(savedTheme);
+    const activeCard = document.getElementById(`theme-${savedTheme}`);
+    if(activeCard) activeCard.classList.add('active');
 
-    toggleLightDarkMode(SafeStorage.get('sezocann_display_mode', 'dark'));
-    let st = SafeStorage.get('sezocann_theme', 'default'); applyTheme(st);
-    
-    await fetchAutoMatches();
-    
-    renderCategoryList('onemli'); renderFavoritesBar();
-    
-    if ("Notification" in window && Notification.permission === "granted" && DOM.pushBellBtn) { DOM.pushBellBtn.classList.add('bell-active'); }
-    
-    const m = document.getElementById('welcomeModal'); if(m) m.classList.add('show');
-    document.querySelectorAll('.t-card').forEach(c => c.classList.remove('active'));
-    const ac = document.getElementById(`theme-${st}`); if(ac) ac.classList.add('active');
-    if (DOM.searchInput) DOM.searchInput.addEventListener('input', filterMatches);
-    
-    window.addEventListener('resize', checkAndActivateMarquee);
-    
-    setTimeout(() => {
-        if (streamsData && streamsData['onemli'] && streamsData['onemli'].items.length > 0) { loadM3u8(streamsData['onemli'].items[0].url, false); }
-    }, 150);
-}
-window.addEventListener('load', initApp);
+    if(DOM.searchInput) DOM.searchInput.addEventListener('input', filterMatches);
+
+    initKeyboardShortcuts();
+    renderFavoritesBar();
+    renderCategoryList(currentCategory);
+
+    const modal = document.getElementById('welcomeModal');
+    if(modal) modal.classList.add('show');
+});
 </script>
 </body>
 </html>
