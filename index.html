@@ -106,7 +106,7 @@ header { display: flex; justify-content: space-between; align-items: center; pad
     animation: professionalShine 6s ease-in-out infinite; 
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); 
 }
-.logo .hd-tag, .sm-logo-glow .hd-tag, .welcome-title .hd-tag, .loader-logo .hd-tag {
+.logo .hd-tag, .sm-logo-glow .hd-tag, .loader-logo .hd-tag {
     font-size: 0.62em;
     vertical-align: super;
     margin-left: 3px;
@@ -122,24 +122,12 @@ header { display: flex; justify-content: space-between; align-items: center; pad
 .action-btn-top.bell-active, .action-btn-top.theater-active { background: var(--accent); color: #000; border-color: var(--accent); }
 
 /* TELEGRAM ANIMASYONU */
-.telegram-btn-anim {
-    color: #0088cc !important;
-    border-color: rgba(0, 136, 204, 0.3) !important;
-}
-.telegram-btn-anim i {
-    animation: socialPulse 2.5s infinite ease-in-out;
-    display: inline-block;
-}
+.telegram-btn-anim { color: #0088cc !important; border-color: rgba(0, 136, 204, 0.3) !important; }
+.telegram-btn-anim i { animation: socialPulse 2.5s infinite ease-in-out; display: inline-block; }
 
 /* INSTAGRAM ANIMASYONU */
-.instagram-btn-anim {
-    color: #e1306c !important;
-    border-color: rgba(225, 48, 108, 0.3) !important;
-}
-.instagram-btn-anim i {
-    animation: socialPulse 2.5s infinite ease-in-out;
-    display: inline-block;
-}
+.instagram-btn-anim { color: #e1306c !important; border-color: rgba(225, 48, 108, 0.3) !important; }
+.instagram-btn-anim i { animation: socialPulse 2.5s infinite ease-in-out; display: inline-block; }
 
 @keyframes socialPulse {
     0% { transform: scale(1) rotate(0deg); }
@@ -206,7 +194,7 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .stream-loader-overlay {
     display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(6, 9, 19, 0.94); backdrop-filter: blur(8px);
-    z-index: 500; flex-direction: column; align-items: center; justify-content: space-between; padding: 25px 15px;
+    z-index: 500; flex-direction: column; align-items: center; justify-content: space-between; padding: 25px 15px; pointer-events: none;
 }
 .loader-content {
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; flex: 1;
@@ -214,18 +202,10 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .loader-spinner { width: 48px; height: 48px; border: 4px solid rgba(250, 204, 21, 0.2); border-top: 4px solid var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
 .loader-text { font-size: 0.85rem; font-weight: 800; color: var(--text-main); letter-spacing: 0.5px; text-transform: uppercase; }
 .loader-logo {
-    font-size: clamp(0.85rem, 3vw, 1.05rem);
-    font-weight: 900;
-    letter-spacing: -0.3px;
-    text-transform: uppercase;
-    background: var(--logo-gradient);
-    background-size: 400% 100%;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: professionalShine 6s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-    opacity: 0.9;
+    font-size: clamp(0.85rem, 3vw, 1.05rem); font-weight: 900; letter-spacing: -0.3px; text-transform: uppercase;
+    background: var(--logo-gradient); background-size: 400% 100%; color: transparent;
+    -webkit-background-clip: text; background-clip: text;
+    animation: professionalShine 6s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); opacity: 0.9;
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -235,13 +215,9 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
     background: rgba(8, 12, 20, 0.8) !important; 
     border: 2px solid var(--accent) !important; 
     border-radius: 50% !important; 
-    width: 65px !important; 
-    height: 65px !important; 
-    line-height: 61px !important; 
-    margin-left: -32.5px !important; 
-    margin-top: -32.5px !important; 
-    color: var(--accent) !important; 
-    font-size: 1.8rem !important;
+    width: 65px !important; height: 65px !important; line-height: 61px !important; 
+    margin-left: -32.5px !important; margin-top: -32.5px !important; 
+    color: var(--accent) !important; font-size: 1.8rem !important;
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 0 20px var(--accent-glow) !important; 
 }
@@ -252,60 +228,29 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .video-js .vjs-button:hover { color: var(--accent) !important; }
 .video-js .vjs-play-progress, .video-js .vjs-volume-level { background-color: var(--accent) !important; }
 
-/* 🌟 KESİNTİSİZ & PÜRÜZSÜZ TICKER YAPISI (GPU ACCELERATED & Seamless Loop) 🌟 */
+/* 🌟 KESİNTİSİZ & PÜRÜZSÜZ TICKER YAPISI 🌟 */
 .ticker-container { 
-    background: var(--ticker-bg); 
-    overflow: hidden; 
-    position: relative; 
-    z-index: 10; 
-    width: 100%; 
-    margin: 0 auto 16px auto; 
-    padding: 10px 0; 
-    border-radius: 14px; 
-    box-shadow: 0 4px 15px var(--shadow-main); 
-    border: 1px solid var(--border-color); 
-    display: flex; 
-    align-items: center; 
+    background: var(--ticker-bg); overflow: hidden; position: relative; z-index: 10; width: 100%; 
+    margin: 0 auto 16px auto; padding: 10px 0; border-radius: 14px; 
+    box-shadow: 0 4px 15px var(--shadow-main); border: 1px solid var(--border-color); display: flex; align-items: center; 
 }
 
 .ticker-wrap { 
-    display: flex; 
-    width: max-content; 
-    white-space: nowrap; 
+    display: flex; width: max-content; white-space: nowrap; 
     animation: smoothMarquee 25s linear infinite; 
-    will-change: transform; 
-    transform: translate3d(0, 0, 0); 
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    perspective: 1000px;
+    will-change: transform; transform: translate3d(0, 0, 0); 
+    backface-visibility: hidden; -webkit-backface-visibility: hidden; perspective: 1000px;
 }
 
 .ticker-wrap:hover { animation-play-state: paused; }
-
-.ticker-group { 
-    display: flex; 
-    align-items: center; 
-    flex-shrink: 0; 
-}
-
+.ticker-group { display: flex; align-items: center; flex-shrink: 0; }
 .ticker-item { 
-    color: var(--text-main); 
-    font-size: clamp(0.75rem, 2.3vw, 0.82rem); 
-    font-weight: 700; 
-    padding: 0 24px; 
-    letter-spacing: 0.3px; 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-    text-transform: uppercase; 
-    white-space: nowrap; 
-    line-height: 1.2; 
+    color: var(--text-main); font-size: clamp(0.75rem, 2.3vw, 0.82rem); font-weight: 700; 
+    padding: 0 24px; letter-spacing: 0.3px; display: inline-flex; align-items: center; 
+    gap: 8px; text-transform: uppercase; white-space: nowrap; line-height: 1.2; 
 }
 
-@keyframes smoothMarquee { 
-    0% { transform: translate3d(0, 0, 0); } 
-    100% { transform: translate3d(-50%, 0, 0); } 
-}
+@keyframes smoothMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
 
 .text-premium { color: var(--accent); font-weight: 900; }
 .text-insta { color: #e1306c; font-weight: 800; }
@@ -331,64 +276,28 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .offline-screen.show { display: flex; }
 .offline-icon { font-size: 3.5rem; color: var(--live-red); margin-bottom: 15px; }
 
-/* DÜŞME ANİMASYONLU MODAL */
+/* MODAL YAPISI */
 .welcome-modal, .theme-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(10px); z-index: 999999; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
 .welcome-modal.show, .theme-modal.active { display: flex; opacity: 1; }
 
 .welcome-content { 
-    background: linear-gradient(160deg, #0f172a 0%, #030712 100%); 
-    border: 1px solid var(--border-color); 
-    border-radius: 24px; 
-    padding: 30px 22px; 
-    width: 90%; 
-    max-width: 360px; 
-    text-align: center; 
-    position: relative; 
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); 
-    transform: translateY(-80px) scale(0.9);
+    background: linear-gradient(160deg, #0f172a 0%, #030712 100%); border: 1px solid var(--border-color); border-radius: 24px; 
+    padding: 30px 22px; width: 90%; max-width: 360px; text-align: center; position: relative; 
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); transform: translateY(-80px) scale(0.9);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.welcome-modal.show .welcome-content {
-    transform: translateY(0) scale(1);
-    animation: modalDropIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes modalDropIn {
-    0% { transform: translateY(-120px) scale(0.8); opacity: 0; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
-}
+.welcome-modal.show .welcome-content { transform: translateY(0) scale(1); animation: modalDropIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes modalDropIn { 0% { transform: translateY(-120px) scale(0.8); opacity: 0; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
 
 .theme-content { background: linear-gradient(160deg, #0f172a 0%, #030712 100%); border: 1px solid var(--border-color); border-radius: 24px; padding: 30px 22px; width: 90%; max-width: 360px; text-align: center; position: relative; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); }
 body.light-mode .welcome-content, body.light-mode .theme-content { background: #ffffff; }
 
-.welcome-icon-wrap { 
-    width: 72px; 
-    height: 72px; 
-    background: rgba(0, 136, 204, 0.12); 
-    border: 1px solid rgba(0, 136, 204, 0.3);
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin: 0 auto 20px auto; 
-    box-shadow: 0 0 20px rgba(0, 136, 204, 0.2);
-}
+.welcome-icon-wrap { width: 72px; height: 72px; background: rgba(0, 136, 204, 0.12); border: 1px solid rgba(0, 136, 204, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 0 20px rgba(0, 136, 204, 0.2); }
 .welcome-icon { font-size: 2.2rem; color: #0088cc; }
+.welcome-icon i { animation: telegramPulse 2s infinite ease-in-out; display: inline-block; }
+@keyframes telegramPulse { 0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); } 50% { transform: scale(1.2) rotate(-8deg); filter: drop-shadow(0 0 12px rgba(0, 136, 204, 0.9)); } 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); } }
 
-/* TELEGRAM MODAL LOGO ANIMASYONU */
-.welcome-icon i {
-    animation: telegramPulse 2s infinite ease-in-out;
-    display: inline-block;
-}
-
-@keyframes telegramPulse {
-    0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); }
-    50% { transform: scale(1.2) rotate(-8deg); filter: drop-shadow(0 0 12px rgba(0, 136, 204, 0.9)); }
-    100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(0, 136, 204, 0.5)); }
-}
-
-.welcome-title { font-size: 1.2rem; font-weight: 900; margin-bottom: 4px; color: var(--text-main); text-transform: uppercase; }
+.welcome-title { font-size: 1.25rem; font-weight: 900; margin-bottom: 4px; color: var(--text-main); text-transform: uppercase; }
 .welcome-subtitle { font-size: 0.73rem; color: #0088cc; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px; }
 .welcome-text { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 22px; line-height: 1.5; }
 .welcome-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #0088cc; color: #fff; text-decoration: none; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.85rem; width: 100%; text-transform: uppercase; }
@@ -458,45 +367,30 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 
 .site-footer { text-align: center; padding: 24px 15px; margin-top: 20px; border-top: 1px solid var(--border-color); font-size: 0.72rem; font-weight: 600; color: var(--text-muted); line-height: 1.6; }
 .site-footer .footer-brand span { color: var(--accent); font-weight: 900; }
+.site-footer .copyright-text { margin-top: 8px; }
 
-/* ALT GEZİNME BARININ DÜZELTİLMİŞ HALİ */
+/* ALT GEZİNME BARI */
 .bottom-nav { 
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    background: var(--glass-bg); 
-    backdrop-filter: blur(12px); 
-    -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--glass-border); 
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center; 
-    padding: 10px 8px; 
-    z-index: 999; 
-    box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+    position: fixed; bottom: 0; left: 0; width: 100%; 
+    background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border); display: flex; justify-content: space-around; 
+    align-items: center; padding: 10px 8px; z-index: 999; box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
 }
 .nav-item { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    gap: 5px; 
-    color: var(--text-muted); 
-    font-size: 0.72rem; 
-    font-weight: 700; 
-    cursor: pointer; 
-    flex: 1;
-    text-align: center;
-    padding: 4px 0;
-    transition: all 0.2s ease;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 5px; color: var(--text-muted); font-size: 0.72rem; font-weight: 700; 
+    cursor: pointer; flex: 1; text-align: center; padding: 4px 0; transition: all 0.2s ease;
 }
-.nav-item i {
-    font-size: 1.1rem;
-}
+.nav-item i { font-size: 1.1rem; }
 .nav-item.active { color: var(--accent); }
 
-.custom-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-main); padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10000; display: flex; align-items: center; gap: 10px; opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; }
+.custom-toast { 
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); 
+    background: var(--bg-card); border: 1px solid var(--accent); color: var(--text-main); 
+    padding: 12px 24px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 10000; display: flex; align-items: center; gap: 10px; 
+    opacity: 0; pointer-events: none; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease; 
+}
 .custom-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 @media screen and (max-width: 580px) {
@@ -522,7 +416,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
     <div class="welcome-icon-wrap">
         <div class="welcome-icon"><i class="fa-brands fa-telegram"></i></div>
     </div>
-    <h2 class="welcome-title">SEZOCANN SPORTS <span class="hd-tag">ʜᴅ</span></h2>
+    <h2 class="welcome-title">SEZOCANN SPORTS HD</h2>
     <div class="welcome-subtitle">Resmî Duyuru Kanalı</div>
     <p class="welcome-text">Canlı yayın linkleri, anlık maç bildirimleri ve kesintisiz adres güncellemeleri için topluluğumuza katılın.</p>
     <a href="https://t.me/sezocannsports" target="_blank" rel="noopener noreferrer" class="welcome-btn" onclick="closeWelcome()">
@@ -545,7 +439,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
   </div>
 </header>
 
-<!-- SIFIR ATLAMA - TAM KESİNTİSİZ 60 FPS TICKER DÖNGÜSÜ -->
+<!-- KESİNTİSİZ 60 FPS TICKER DÖNGÜSÜ -->
 <div class="ticker-container">
   <div class="ticker-wrap" id="mainTickerWrap">
     <div class="ticker-group">
@@ -649,7 +543,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 
   <footer class="site-footer">
     <div class="footer-brand">© <span id="currentYear"></span> SEZOCANN SPORTS <span>ʜᴅ</span></div>
-    <div>Bu web sitesinde yer alan tüm tasarım, arayüz ve kodlama yapısı SEZAİCANN1'e aittir.</div>
+    <div class="copyright-text">Bu web sitesinde yer alan tüm tasarım, arayüz ve kodlama yapısı SEZAİCANN1'e aittir.</div>
   </footer>
 </main>
 
@@ -662,19 +556,20 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 <audio id="beepAudio" src="https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg" preload="auto"></audio>
 
 <script type="text/javascript">
+// Genel Sistem Hataları Yakalayıcısı
 window.onerror = function(msg, url, lineNo, columnNo, error) {
-    console.warn("Sistem Uyarısı:", msg);
+    console.warn("Sistem Uyarısı (İzole Edildi):", msg);
     return true; 
 };
 window.onunhandledrejection = function(e) {
     if (e.reason && (e.reason.name === 'AbortError' || e.reason.name === 'NotAllowedError')) {
-        e.preventDefault();
-        return;
+        e.preventDefault(); return;
     }
-    console.warn("Söz Hatası Yakalandı:", e.reason);
+    console.warn("Söz Hatası Yakalandı (İzole Edildi):", e.reason);
     e.preventDefault();
 };
 
+// Service Worker (Çevrimdışı Çalışma/PWA desteği)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         const swCode = `
@@ -686,6 +581,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+// Bağlantı Kontrolleri
 window.addEventListener('online', () => {
     const offlineScreen = document.getElementById('offlineScreen');
     if (offlineScreen) offlineScreen.classList.remove('show');
@@ -704,6 +600,7 @@ function checkNetworkSpeed() {
     }
 }
 
+// Tema Bilgileri
 const themes = {
     default: { dark: '#facc15', dark_d: '#ca8a04', bg: '#060913', card: '#0b1120', glow: 'rgba(250, 204, 21, 0.15)' },
     gs: { dark: '#facc15', dark_d: '#991b1b', bg: '#1a0303', card: '#260606', glow: 'rgba(250, 204, 21, 0.12)' },
@@ -730,23 +627,17 @@ function trNormalize(text) {
 
 function fallbackCopyTextToClipboard(text, successMsg) {
     const textArea = document.createElement("textarea");
-    textArea.value = text;
-    textArea.style.top = "0";
-    textArea.style.left = "0";
-    textArea.style.position = "fixed";
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
+    textArea.value = text; textArea.style.top = "0"; textArea.style.left = "0"; textArea.style.position = "fixed";
+    document.body.appendChild(textArea); textArea.focus(); textArea.select();
     try {
         const successful = document.execCommand('copy');
         if (successful) showToast(successMsg);
         else showToast("Kopyalama başarısız!", "fa-xmark");
-    } catch (err) {
-        showToast("Kopyalama başarısız!", "fa-xmark");
-    }
+    } catch (err) { showToast("Kopyalama başarısız!", "fa-xmark"); }
     document.body.removeChild(textArea);
 }
 
+// Global DOM Referansları
 const DOM = {
     root: document.documentElement,
     playerError: document.getElementById('playerError'),
@@ -770,29 +661,12 @@ const DOM = {
     streamLoader: document.getElementById('streamLoader')
 };
 
+// Test Yayın Verileri
 const streamsData = {
     onemli: {
         items: [
-            { 
-                id: "gs_venezia", 
-                isLive: true, 
-                startTime: "21:00", 
-                statusText: "CANLI", 
-                league: "SEZOCANN SPORTS ʜᴅ", 
-                teams: "Galatasaray vs Venezia", 
-                url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", 
-                customBadge: "HAZIRLIK MAÇI" 
-            },
-            { 
-                id: "gornik_fb", 
-                isLive: true, 
-                startTime: "21:00", 
-                statusText: "CANLI", 
-                league: "SEZOCANN SPORTS ʜᴅ", 
-                teams: "Gornik Zabrze vs Fenerbahçe", 
-                url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", 
-                customBadge: "UCL ÖN ELEME" 
-            }
+            { id: "gs_venezia", isLive: true, startTime: "21:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "Galatasaray vs Venezia", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", customBadge: "HAZIRLIK MAÇI" },
+            { id: "gornik_fb", isLive: true, startTime: "21:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "Gornik Zabrze vs Fenerbahçe", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", customBadge: "UCL ÖN ELEME" }
         ]
     },
     spor: {
@@ -848,26 +722,18 @@ function gitTelegram() { window.open("https://t.me/sezocannsports", '_blank'); }
 
 function shareSite() { 
     if (navigator.share) {
-        navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', url: window.location.href }).catch(() => {});
+        navigator.share({ title: 'SEZOCANN SPORTS HD', url: window.location.href }).catch(() => {});
     } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(window.location.href)
-            .then(() => showToast("Yayın linki başarıyla kopyalandı! 🚀"))
-            .catch(() => fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀"));
-    } else {
-        fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀");
-    }
+        navigator.clipboard.writeText(window.location.href).then(() => showToast("Yayın linki başarıyla kopyalandı! 🚀")).catch(() => fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀"));
+    } else { fallbackCopyTextToClipboard(window.location.href, "Yayın linki kopyalandı! 🚀"); }
 }
 
 function shareMatch(t) { 
     if (navigator.share) {
-        navigator.share({ title: 'SEZOCANN SPORTS ʜᴅ', text: `${t} Canlı İzle!`, url: window.location.href }).catch(() => {});
+        navigator.share({ title: 'SEZOCANN SPORTS HD', text: `${t} Canlı İzle!`, url: window.location.href }).catch(() => {});
     } else if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(window.location.href)
-            .then(() => showToast(`${t} kopyalandı! 🚀`))
-            .catch(() => fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`));
-    } else {
-        fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`);
-    }
+        navigator.clipboard.writeText(window.location.href).then(() => showToast(`${t} kopyalandı! 🚀`)).catch(() => fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`));
+    } else { fallbackCopyTextToClipboard(window.location.href, `${t} kopyalandı! 🚀`); }
 }
 
 function retryCurrentStream() { 
@@ -890,15 +756,14 @@ function triggerStreamError() {
     }
 }
 
+// VideoJS Core Oynatıcı Kontrolü
 function loadM3u8(url, autoPlayCheck = false) {
     if (typeof window.videojs === 'undefined') {
         showToast("Oynatıcı kütüphanesi yüklenemedi!", "fa-triangle-exclamation");
-        triggerStreamError();
-        return;
+        triggerStreamError(); return;
     }
 
-    checkNetworkSpeed();
-    currentUrl = url; 
+    checkNetworkSpeed(); currentUrl = url; 
     
     if(DOM.streamLoader) {
         DOM.streamLoader.style.display = 'flex';
@@ -920,14 +785,10 @@ function loadM3u8(url, autoPlayCheck = false) {
                 playsinline: true,
                 html5: { 
                     vhs: { 
-                        overrideNative: false, 
-                        enableLowInitialPlaylist: true, 
-                        smoothQualityChange: true, 
-                        handleManifestRedirects: true,
-                        maxBufferLength: 15
+                        overrideNative: false, enableLowInitialPlaylist: true, 
+                        smoothQualityChange: true, handleManifestRedirects: true, maxBufferLength: 15
                     },
-                    nativeAudioTracks: false,
-                    nativeVideoTracks: false
+                    nativeAudioTracks: false, nativeVideoTracks: false
                 },
                 liveui: true
             });
@@ -952,11 +813,7 @@ function loadM3u8(url, autoPlayCheck = false) {
                     e.stopPropagation();
                     if(DOM.beepAudio) { 
                         DOM.beepAudio.currentTime = 0; 
-                        DOM.beepAudio.play().then(() => {
-                            showToast("Sinyal test kanalları aktif! 🔔", "fa-volume-high");
-                        }).catch(() => {
-                            showToast("Ses oynatılamadı", "fa-volume-xmark");
-                        });
+                        DOM.beepAudio.play().then(() => { showToast("Sinyal test kanalları aktif! 🔔", "fa-volume-high"); }).catch(() => { showToast("Ses oynatılamadı", "fa-volume-xmark"); });
                     }
                 };
 
@@ -969,23 +826,14 @@ function loadM3u8(url, autoPlayCheck = false) {
                         e.stopPropagation();
                         try {
                             const videoEl = document.querySelector('#sezocannVideo_html5_api');
-                            if (document.pictureInPictureElement) {
-                                await document.exitPictureInPicture();
-                            } else if (videoEl && videoEl.readyState >= 1) {
-                                await videoEl.requestPictureInPicture();
-                            } else {
-                                showToast("Video henüz yüklenmedi", "fa-circle-exclamation");
-                            }
-                        } catch (err) {
-                            showToast("PiP başlatılamadı", "fa-circle-xmark");
-                        }
+                            if (document.pictureInPictureElement) { await document.exitPictureInPicture(); } 
+                            else if (videoEl && videoEl.readyState >= 1) { await videoEl.requestPictureInPicture(); } 
+                            else { showToast("Video henüz yüklenmedi", "fa-circle-exclamation"); }
+                        } catch (err) { showToast("PiP başlatılamadı", "fa-circle-xmark"); }
                     };
                 }
             }
-        } catch(e) {
-            triggerStreamError();
-            return;
-        }
+        } catch(e) { triggerStreamError(); return; }
     }
 
     try {
@@ -994,12 +842,8 @@ function loadM3u8(url, autoPlayCheck = false) {
             vjsPlayer.muted(true);
             var playPromise = vjsPlayer.play();
             if (playPromise !== undefined) {
-                playPromise.then(() => { 
-                    vjsPlayer.muted(false); 
-                }).catch(() => { 
-                    vjsPlayer.muted(true); 
-                    vjsPlayer.play().catch(()=>{}); 
-                });
+                playPromise.then(() => { vjsPlayer.muted(false); })
+                .catch(() => { vjsPlayer.muted(true); vjsPlayer.play().catch(()=>{}); });
             }
         }
     } catch(err) { triggerStreamError(); }
@@ -1056,7 +900,7 @@ function renderCategoryList(category) {
 
     items.forEach((item) => {
         const faved = getFavorites().some(x => x.id === item.id); const card = document.createElement('div'); card.className = `match-card`;
-        const leagueName = item.league || "SEZOCANN SPORTS ʜᴅ";
+        const leagueName = item.league || "SEZOCANN SPORTS HD";
         const statusLabel = item.statusText || (item.isLive ? "CANLI" : "YAYINDA");
         const isLiveClass = item.isLive ? "" : "not-live";
 
