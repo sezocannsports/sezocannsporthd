@@ -154,6 +154,7 @@ body.theater-mode .player-container { height: 70vh; max-height: 700px; }
     z-index: 20; 
     transform: translateZ(0);
     scroll-margin-top: 15px; 
+    aspect-ratio: 16 / 9;
 }
 
 .select-match-placeholder {
@@ -228,7 +229,7 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
 .video-js .vjs-button:hover { color: var(--accent) !important; }
 .video-js .vjs-play-progress, .video-js .vjs-volume-level { background-color: var(--accent) !important; }
 
-/* 🌟 KESİNTİSİZ & PÜRÜZSÜZ TICKER YAPISI 🌟 */
+/* TICKER YAPISI - REVIZE EDILDI */
 .ticker-container { 
     background: var(--ticker-bg); overflow: hidden; position: relative; z-index: 10; width: 100%; 
     margin: 0 auto 16px auto; padding: 10px 0; border-radius: 14px; 
@@ -239,7 +240,7 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
     display: flex; width: max-content; white-space: nowrap; 
     animation: smoothMarquee 25s linear infinite; 
     will-change: transform; transform: translate3d(0, 0, 0); 
-    backface-visibility: hidden; -webkit-backface-visibility: hidden; perspective: 1000px;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 
 .ticker-wrap:hover { animation-play-state: paused; }
@@ -250,7 +251,10 @@ body.light-mode .sm-notice-box { background: rgba(0,0,0,0.01); box-shadow: 0 10p
     gap: 8px; text-transform: uppercase; white-space: nowrap; line-height: 1.2; 
 }
 
-@keyframes smoothMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-50%, 0, 0); } }
+@keyframes smoothMarquee { 
+    0% { transform: translate3d(0, 0, 0); } 
+    100% { transform: translate3d(-50%, 0, 0); } 
+}
 
 .text-premium { color: var(--accent); font-weight: 900; }
 .text-insta { color: #e1306c; font-weight: 800; }
@@ -336,7 +340,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 .match-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; cursor: pointer; position: relative; width: 100%; overflow: hidden; }
 .match-card.active { background: var(--card-active-bg); border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
 .match-card-active-bg { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 12px 10px; width: 100%; gap: 8px; position: relative; } 
-.section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; }
+.section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; z-index: 2; }
 .hidden-card { display: none !important; }
 
 .match-left { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 4px; flex: 1; }
@@ -351,10 +355,17 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 .match-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; overflow: hidden; flex: 1; }
 .league-name { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; font-weight: 800; white-space: nowrap; letter-spacing: 0.3px; opacity: 0.9; }
 .teams { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.2px; min-width: 0; color: var(--text-main); width: 100%; }
+
+/* SCROLL CONTAINER & MARQUEE REVIZE EDILDI */
 .scroll-container { flex: 1; overflow: hidden; white-space: nowrap; position: relative; display: flex; }
-.scroll-text { display: inline-block; color: var(--text-main); will-change: transform; transform: translate3d(0, 0, 0); }
-.marquee-active { display: inline-block; padding-left: 100%; animation: textMarqueeSmooth 10s linear infinite; } 
-@keyframes textMarqueeSmooth { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+.scroll-text { display: inline-block; color: var(--text-main); }
+.marquee-wrapper { display: inline-flex; white-space: nowrap; will-change: transform; animation: textMarqueeSmooth 12s linear infinite; }
+.marquee-item { padding-right: 40px; display: inline-block; }
+
+@keyframes textMarqueeSmooth { 
+    0% { transform: translate3d(0, 0, 0); } 
+    100% { transform: translate3d(-50%, 0, 0); } 
+}
 
 .team-avatar { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.03); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; border: 1px solid var(--border-color); }
 .match-card.active .team-avatar { color: var(--accent); border-color: var(--accent); }
@@ -373,7 +384,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 .bottom-nav { 
     position: fixed; bottom: 0; left: 0; width: 100%; 
     background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--glass-border); display: flex; justify-around: space-around; 
+    border-top: 1px solid var(--glass-border); display: flex; justify-style: space-around; 
     align-items: center; padding: 10px 8px; z-index: 999; box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
 }
 .nav-item { 
@@ -439,19 +450,9 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
   </div>
 </header>
 
-<!-- KESİNTİSİZ 60 FPS TICKER DÖNGÜSÜ -->
+<!-- TICKER DÖNGÜSÜ -->
 <div class="ticker-container">
   <div class="ticker-wrap" id="mainTickerWrap">
-    <div class="ticker-group">
-      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
-      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
-      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
-    </div>
-    <div class="ticker-group">
-      <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
-      <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
-      <span class="ticker-item"><i class="fa-brands fa-telegram"></i> TELEGRAM: <span class="text-tele">t.me/sezocannsports</span></span>
-    </div>
     <div class="ticker-group">
       <span class="ticker-item"><i class="fa-solid fa-bolt"></i> <span class="text-premium">SEZOCANN SPORTS ʜᴅ</span> KESİNTİSİZ YAYIN KEYFİ!</span>
       <span class="ticker-item"><i class="fa-solid fa-camera"></i> INSTAGRAM: <span class="text-insta">@sezaicann1</span></span>
@@ -505,7 +506,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
            </div>
       </div>
 
-      <video id="sezocannVideo" class="video-js vjs-theme-sezocann" controls preload="auto" playsinline></video>
+      <video id="sezocannVideo" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" playsinline></video>
       
       <div id="playerError" class="player-error">
           <i class="fa-solid fa-triangle-exclamation reji-icon"></i>
@@ -661,7 +662,7 @@ const DOM = {
     streamLoader: document.getElementById('streamLoader')
 };
 
-// Yayın Verileri (Galatasaray vs Venezia kaldırıldı)
+// Yayın Verileri
 const streamsData = {
     onemli: {
         items: [
@@ -784,7 +785,7 @@ function loadM3u8(url, autoPlayCheck = false) {
                 playsinline: true,
                 html5: { 
                     vhs: { 
-                        overrideNative: false, enableLowInitialPlaylist: true, 
+                        overrideNative: true, enableLowInitialPlaylist: true, 
                         smoothQualityChange: true, handleManifestRedirects: true, maxBufferLength: 15
                     },
                     nativeAudioTracks: false, nativeVideoTracks: false
@@ -939,12 +940,32 @@ function renderCategoryList(category) {
     checkAndActivateMarquee();
 }
 
+/* KESİNTİSİZ KAYAN YAZI SISTEMI (DURAKSIZ & SIÇRAMASIZ) */
 function checkAndActivateMarquee() {
     setTimeout(() => {
-        document.querySelectorAll('.scroll-container').forEach(c => {
-            const txt = c.querySelector('.scroll-text'); if (!txt) return;
-            if (txt.offsetWidth > c.offsetWidth) { txt.classList.add('marquee-active'); } 
-            else { txt.classList.remove('marquee-active'); }
+        document.querySelectorAll('.scroll-container').forEach(container => {
+            const txt = container.querySelector('.scroll-text');
+            if (!txt) return;
+
+            // Önceden sarılmış wrapper varsa temizle
+            if (container.querySelector('.marquee-wrapper')) {
+                return;
+            }
+
+            if (txt.offsetWidth > container.offsetWidth) {
+                const textContent = txt.innerHTML;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'marquee-wrapper';
+                
+                // İki adet özdeş item ekleyerek sonsuz döngü yaratıyoruz
+                wrapper.innerHTML = `
+                    <span class="marquee-item">${textContent}</span>
+                    <span class="marquee-item">${textContent}</span>
+                `;
+
+                container.innerHTML = '';
+                container.appendChild(wrapper);
+            }
         });
     }, 300);
 }
