@@ -373,7 +373,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 .bottom-nav { 
     position: fixed; bottom: 0; left: 0; width: 100%; 
     background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    border-top: 1px solid var(--glass-border); display: flex; justify-content: space-around; 
+    border-top: 1px solid var(--glass-border); display: flex; justify-around: space-around; 
     align-items: center; padding: 10px 8px; z-index: 999; box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
 }
 .nav-item { 
@@ -661,11 +661,10 @@ const DOM = {
     streamLoader: document.getElementById('streamLoader')
 };
 
-// Test Yayın Verileri
+// Yayın Verileri (Galatasaray vs Venezia kaldırıldı)
 const streamsData = {
     onemli: {
         items: [
-            { id: "gs_venezia", isLive: true, startTime: "21:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "Galatasaray vs Venezia", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//plus/tracks-v1a1/mono.m3u8", customBadge: "HAZIRLIK MAÇI" },
             { id: "gornik_fb", isLive: true, startTime: "21:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "Gornik Zabrze vs Fenerbahçe", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//ssportplus/tracks-v1a1/mono.m3u8", customBadge: "UCL ÖN ELEME" }
         ]
     },
