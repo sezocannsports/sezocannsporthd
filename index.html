@@ -343,6 +343,18 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
 .section-badge { position: absolute; top: 0; left: 14px; background: var(--accent); color: #000000; font-size: 0.58rem; font-weight: 900; padding: 2px 8px; border-radius: 0 0 6px 6px; text-transform: uppercase; z-index: 2; }
 .hidden-card { display: none !important; }
 
+/* EKSTRA TEK KANAL ALT BUTON STİLİ */
+.stream-sources-bar {
+    display: flex; gap: 8px; padding: 6px 10px 10px 10px; background: rgba(0, 0, 0, 0.2); border-top: 1px solid var(--border-color);
+}
+.source-btn {
+    flex: 1; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); color: var(--text-muted);
+    padding: 6px 10px; border-radius: 8px; font-size: 0.72rem; font-weight: 800; cursor: pointer; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s ease;
+}
+.source-btn:hover { border-color: var(--accent); color: var(--text-main); }
+.source-btn.active-source { background: var(--accent); color: #000; border-color: var(--accent); }
+
 .match-left { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 4px; flex: 1; }
 .live-badge { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; gap: 1px; flex-shrink: 0; width: 52px; }
 .live-badge .live-text { display: flex; align-items: center; gap: 4px; color: var(--live-red); position: relative; padding-left: 12px; font-weight: 900; }
@@ -662,12 +674,41 @@ const DOM = {
     streamLoader: document.getElementById('streamLoader')
 };
 
-// Yayın Verileri
+// Yayın Verileri (Galatasaray vs Rennes: 1. Kanal Karta Basınca Açılır, Altına Sadece 2. Kanal Kondu)
 const streamsData = {
     onemli: {
         items: [
-            { id: "Midtjylland_besiktas", isLive: true, startTime: "20:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "Midtjylland vs Beşiktaş", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8", customBadge: "AVRUPA ÖN ÖLEME 2. TUR" },
-            { id: "Inter_turku_basaksehir", isLive: true, startTime: "19:00", statusText: "CANLI", league: "SEZOCANN SPORTS ʜᴅ", teams: "İnter Turku vs Başakşehir", url: "https://tv-trt1.medya.trt.com.tr/master.m3u8", customBadge: "AVRUPA KONFERANS ELEME 2. TUR" }
+            { 
+                id: "Trabzonspor_Udinese", 
+                isLive: true, 
+                startTime: "17:30", 
+                statusText: "CANLI", 
+                league: "SEZOCANN SPORTS ʜᴅ", 
+                teams: "Trabzonspor vs Udinese", 
+                url: "https://ciner.daioncdn.net/ht-spor/ht-spor_1080p.m3u8?ex=0&sid=8mrx7xzz7jmw&app=d5539841-018b-48b4-80fe-8bac2ffc3d5e&ce=2", 
+                customBadge: "HAZIRLIK MAÇI" 
+            },
+            { 
+                id: "Galatasaray_Rennes", 
+                isLive: true, 
+                startTime: "21:00", 
+                statusText: "CANLI", 
+                league: "SEZOCANN SPORTS ʜᴅ", 
+                teams: "Galatasaray vs Rennes", 
+                url: "https://ensonhaber-live.ercdn.net/tv100/tv100.m3u8", // 1. Kanal (Karta basınca bu açılır)
+                customBadge: "HAZIRLIK MAÇI",
+                extraSource: { name: "2. Kanal (S Sport+)", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8" } // Altındaki Tek Ekstra Kanal
+            },
+            { 
+                id: "Liverpool_Leeds_United", 
+                isLive: true, 
+                startTime: "23:00", 
+                statusText: "CANLI", 
+                league: "SEZOCANN SPORTS ʜᴅ", 
+                teams: "Liverpool vs Leeds United", 
+                url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8", 
+                customBadge: "HAZIRLIK MAÇI" 
+            }
         ]
     },
     spor: {
@@ -907,6 +948,15 @@ function renderCategoryList(category) {
         const isLiveClass = item.isLive ? "" : "not-live";
 
         card.dataset.searchtext = trNormalize(item.teams + " " + leagueName);
+        
+        // Tek Ekstra Alternatif Kanal Butonu Yapısı
+        let extraSourceHTML = '';
+        if (item.extraSource) {
+            extraSourceHTML = `<div class="stream-sources-bar">
+                <div class="source-btn" onclick="playExtraSource(event, '${item.extraSource.url}', this)"><i class="fa-solid fa-tv"></i> ${escapeHTML(item.extraSource.name)}</div>
+            </div>`;
+        }
+
         card.innerHTML = (item.customBadge ? `<div class="section-badge">${escapeHTML(item.customBadge)}</div>` : '') + `
             <div class="match-card-active-bg">
                 <div class="match-left">
@@ -927,19 +977,37 @@ function renderCategoryList(category) {
                     <div class="action-btn fav-btn ${faved ? 'faved' : ''}" title="Favori"><i class="fa-${faved ? 'solid' : 'regular'} fa-heart"></i></div>
                     <div class="play-icon-btn"><i class="fa-solid fa-play"></i></div>
                 </div>
-            </div>`;
+            </div>` + extraSourceHTML;
             
         card.querySelector('.share-btn').addEventListener('click', (e) => { e.stopPropagation(); shareMatch(item.teams); });
         card.querySelector('.fav-btn').addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(item); });
         
-        card.onclick = () => { 
+        // Kartın kendisine tıklanınca 1. Kanal başlar
+        card.onclick = (e) => { 
+            if (e.target.closest('.source-btn')) return;
             document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active')); 
+            document.querySelectorAll('.source-btn').forEach(b => b.classList.remove('active-source'));
             card.classList.add('active'); 
             playStreamDirectly(item); 
         };
         DOM.matchList.appendChild(card);
     });
     checkAndActivateMarquee();
+}
+
+// 2. Kanal Butonuna Basıldığında Oynatma Fonksiyonu
+function playExtraSource(event, url, btnEl) {
+    event.stopPropagation();
+    const parentCard = btnEl.closest('.match-card');
+    if (parentCard) {
+        document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active'));
+        parentCard.classList.add('active');
+    }
+    document.querySelectorAll('.source-btn').forEach(b => b.classList.remove('active-source'));
+    btnEl.classList.add('active-source');
+
+    loadM3u8(url, true);
+    if(DOM.playerSection) { DOM.playerSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 }
 
 /* KESİNTİSİZ KAYAN YAZI SISTEMI (DURAKSIZ & SIÇRAMASIZ) */
@@ -949,7 +1017,6 @@ function checkAndActivateMarquee() {
             const txt = container.querySelector('.scroll-text');
             if (!txt) return;
 
-            // Önceden sarılmış wrapper varsa temizle
             if (container.querySelector('.marquee-wrapper')) {
                 return;
             }
@@ -959,7 +1026,6 @@ function checkAndActivateMarquee() {
                 const wrapper = document.createElement('div');
                 wrapper.className = 'marquee-wrapper';
                 
-                // İki adet özdeş item ekleyerek sonsuz döngü yaratıyoruz
                 wrapper.innerHTML = `
                     <span class="marquee-item">${textContent}</span>
                     <span class="marquee-item">${textContent}</span>
