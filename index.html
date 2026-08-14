@@ -439,7 +439,7 @@ body.light-mode .welcome-content, body.light-mode .theme-content { background: #
     <div class="welcome-icon-wrap">
         <div class="welcome-icon"><i class="fa-brands fa-telegram"></i></div>
     </div>
-    <h2 class="welcome-title">SEZOCANN SPORTS HD</h2>
+    <h2 class="welcome-title">SEZOCANN SPORTS ʜᴅ</h2>
     <div class="welcome-subtitle">Resmî Duyuru Kanalı</div>
     <p class="welcome-text">Canlı yayın linkleri, anlık maç bildirimleri ve kesintisiz adres güncellemeleri için topluluğumuza katılın.</p>
     <a href="https://t.me/sezocannsports" target="_blank" rel="noopener noreferrer" class="welcome-btn" onclick="closeWelcome()">
@@ -674,40 +674,19 @@ const DOM = {
     streamLoader: document.getElementById('streamLoader')
 };
 
-// Yayın Verileri (Galatasaray vs Rennes: 1. Kanal Karta Basınca Açılır, Altına Sadece 2. Kanal Kondu)
+// Yayın Verileri
 const streamsData = {
     onemli: {
         items: [
             { 
-                id: "Trabzonspor_Udinese", 
+                id: "Galatasaray_CorumFK", 
                 isLive: true, 
-                startTime: "17:30", 
+                startTime: "21:30", 
                 statusText: "CANLI", 
                 league: "SEZOCANN SPORTS ʜᴅ", 
-                teams: "Trabzonspor vs Udinese", 
-                url: "https://ciner.daioncdn.net/ht-spor/ht-spor_1080p.m3u8?ex=0&sid=8mrx7xzz7jmw&app=d5539841-018b-48b4-80fe-8bac2ffc3d5e&ce=2", 
-                customBadge: "HAZIRLIK MAÇI" 
-            },
-            { 
-                id: "Galatasaray_Rennes", 
-                isLive: true, 
-                startTime: "21:00", 
-                statusText: "CANLI", 
-                league: "SEZOCANN SPORTS ʜᴅ", 
-                teams: "Galatasaray vs Rennes", 
-                url: "https://ensonhaber-live.ercdn.net/tv100/tv100.m3u8", // 1. Kanal (Karta basınca bu açılır)
-                customBadge: "HAZIRLIK MAÇI",
-                extraSource: { name: "2. Kanal (S Sport+)", url: "https://hlsforever.forgetmoenszo.workers.dev/https://corestream.siteyaptim.live//s-sport/tracks-v1a1/mono.m3u8" } // Altındaki Tek Ekstra Kanal
-            },
-            { 
-                id: "Liverpool_Leeds_United", 
-                isLive: true, 
-                startTime: "23:00", 
-                statusText: "CANLI", 
-                league: "SEZOCANN SPORTS ʜᴅ", 
-                teams: "Liverpool vs Leeds United", 
-                url: "https://tv-trtspor1.medya.trt.com.tr/master.m3u8", 
-                customBadge: "HAZIRLIK MAÇI" 
+                teams: "Galatasaray vs Çorum FK", 
+                url: "", // Yayın linkini buraya ekleyebilirsiniz
+                customBadge: "Süper Lig Maçı" 
             }
         ]
     },
@@ -949,7 +928,6 @@ function renderCategoryList(category) {
 
         card.dataset.searchtext = trNormalize(item.teams + " " + leagueName);
         
-        // Tek Ekstra Alternatif Kanal Butonu Yapısı
         let extraSourceHTML = '';
         if (item.extraSource) {
             extraSourceHTML = `<div class="stream-sources-bar">
@@ -982,7 +960,6 @@ function renderCategoryList(category) {
         card.querySelector('.share-btn').addEventListener('click', (e) => { e.stopPropagation(); shareMatch(item.teams); });
         card.querySelector('.fav-btn').addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(item); });
         
-        // Kartın kendisine tıklanınca 1. Kanal başlar
         card.onclick = (e) => { 
             if (e.target.closest('.source-btn')) return;
             document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active')); 
@@ -995,7 +972,6 @@ function renderCategoryList(category) {
     checkAndActivateMarquee();
 }
 
-// 2. Kanal Butonuna Basıldığında Oynatma Fonksiyonu
 function playExtraSource(event, url, btnEl) {
     event.stopPropagation();
     const parentCard = btnEl.closest('.match-card');
